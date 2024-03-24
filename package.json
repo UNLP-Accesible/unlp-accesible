@@ -1,0 +1,31 @@
+{
+  "name": "unlp-accesible-pwa",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier -u --write .",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "prepare": "is-ci && echo 'CI detected, skipping husky installation' || husky install",
+    "lint-staged": "lint-staged"
+  },
+  "dependencies": {
+    "next": "14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.4",
+    "husky": "^8.0.1",
+    "is-ci": "^3.0.1",
+    "lint-staged": "^13.0.1",
+    "prettier": "^2.6.2",
+    "typescript": "^5.4.2"
+  }
+}
