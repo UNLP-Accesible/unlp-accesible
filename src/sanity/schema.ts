@@ -101,8 +101,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     name: 'siteSettings',
     title: 'Site Settings',
     type: 'document',
-    // Singletons in Sanity usually have only one instance and are used for site-wide settings
-    __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
     fields: [
       {
         name: 'mainNavigation',
