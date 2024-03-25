@@ -1,6 +1,9 @@
 {
   "name": "unlp-accesible-pwa",
   "scripts": {
+    "presetup": "echo 'about to setup env variables, follow the guide here: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#using-the-sanity-cli'",
+    "setup": "sanity init --env .env.local",
+    "postsetup": "echo 'create the read token by following the rest of the guide: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#creating-a-read-token'",
     "dev": "next",
     "build": "next build",
     "start": "next start",
@@ -12,12 +15,17 @@
     "lint-staged": "lint-staged"
   },
   "dependencies": {
+    "@sanity/image-url": "1",
+    "@sanity/vision": "^3.35.2",
     "next": "14.1.0",
+    "next-sanity": "7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sanity": "^3.35.2",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
-    "@types/node": "^12.12.21",
+    "@types/node": "^20.11.1",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "danger": "^11.3.1",
