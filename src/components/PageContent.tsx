@@ -10,7 +10,7 @@ interface PageContentProps {
 // Serializer to instruct BlockContent how to render blocks
 const serializers = {
   types: {
-    block: (props) => {
+    block: (props: any) => {
       // Apply styling for different styles if needed, here's an example for 'normal'
       if (props.node.style === 'normal') {
         return <SpanBlock>{props.children}</SpanBlock>;
