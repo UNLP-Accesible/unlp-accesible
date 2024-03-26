@@ -8,7 +8,7 @@ const pageFields = groq`
   "slug": slug.current,
 `;
 
-export const settingsQuery = grop`*[_type == "settings"][0]`;
+export const settingsQuery = groq`*[_type == "settings"][0]`;
 
 export const indexQuery = groq`
 *[_type == "page"] | order(date desc, _updatedAt desc) {
