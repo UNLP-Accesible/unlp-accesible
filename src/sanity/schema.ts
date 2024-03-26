@@ -134,7 +134,6 @@ const siteSettings: SchemaTypeDefinition = {
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'page' }] }],
     },
-    // Additional site-wide settings go here...
   ],
 };
 

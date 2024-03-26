@@ -8,7 +8,14 @@ const pageFields = groq`
   "slug": slug.current,
 `;
 
-export const settingsQuery = groq`*[_type == "settings"][0]`;
+export const settingsQuery = groq`
+*[_type == "siteSettings"][0] {
+  "mainNavigationPages": mainNavigation[]->{
+    ${pageFields}
+  },
+  // You can add other fields from siteSettings here if needed
+}
+`;
 
 export const indexQuery = groq`
 *[_type == "page"] | order(date desc, _updatedAt desc) {
@@ -25,8 +32,13 @@ export const pageBySlugQuery = groq`
 }
 `;
 
-export interface Settings {}
+export interface Settings {
+  mainNavigation?: PageEntity[];
+  footerNavigation?: PageEntity[];
+}
 
-export interface Page {
+export interface PageEntity {
+  _id: string;
   slug: string;
+  title: string;
 }
