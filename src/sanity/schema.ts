@@ -87,6 +87,26 @@ const page: SchemaTypeDefinition = {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'titleColor',
+      title: 'Title Color',
+      type: 'string',
+    },
+    {
+      name: 'titleBackgroundColor',
+      title: 'Title Background Color',
+      type: 'string',
+    },
+    {
+      name: 'contentColor',
+      title: 'Content Color',
+      type: 'string',
+    },
+    {
+      name: 'contentBackgroundColor',
+      title: 'Content Background Color',
+      type: 'string',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -122,6 +142,11 @@ const siteSettings: SchemaTypeDefinition = {
   title: 'Site Settings',
   type: 'document',
   fields: [
+    {
+      name: 'backgroundColor',
+      title: 'Background Color',
+      type: 'string',
+    },
     {
       name: 'mainNavigation',
       title: 'Main Navigation',

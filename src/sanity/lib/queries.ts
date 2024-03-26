@@ -3,17 +3,30 @@ import { groq } from 'next-sanity';
 const pageFields = groq`
   _id,
   title,
+  titleColor,
+  titleBackgroundColor,
+  contentColor,
+  contentBackgroundColor,
   date,
   _updatedAt,
   "slug": slug.current,
+  content[]{
+    ...,
+    asset->{
+      ...
+    }
+  }
 `;
 
 export const settingsQuery = groq`
 *[_type == "siteSettings"][0] {
+  backgroundColor,
   "mainNavigationPages": mainNavigation[]->{
     ${pageFields}
   },
-  // You can add other fields from siteSettings here if needed
+  "footerNavigationPages": footerNavigation[]->{
+    ${pageFields}
+  },
 }
 `;
 
@@ -33,12 +46,24 @@ export const pageBySlugQuery = groq`
 `;
 
 export interface Settings {
-  mainNavigation?: PageEntity[];
-  footerNavigation?: PageEntity[];
+  backgroundColor?: string;
+  mainNavigationPages?: Page[];
+  footerNavigationPages?: Page[];
 }
 
-export interface PageEntity {
+export interface PageContent {
+  _type: string;
+  _key: string;
+  children: { _type: string; _key: string; text: string }[];
+}
+
+export interface Page {
   _id: string;
   slug: string;
   title: string;
+  titleColor?: string;
+  titleBackgroundColor?: string;
+  contentColor?: string;
+  contentBackgroundColor?: string;
+  content: PageContent[];
 }
