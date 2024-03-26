@@ -2,9 +2,8 @@ import { readToken } from '@/sanity/env';
 import { getClient, getSettings } from '@/sanity/lib/client';
 import { Settings } from '@/sanity/lib/queries';
 import { GetStaticProps } from 'next';
-import type { SharedPageProps } from '@/pages/_app';
 
-interface PageProps extends SharedPageProps {
+interface PageProps {
   settings: Settings;
 }
 
