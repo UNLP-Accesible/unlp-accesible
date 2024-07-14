@@ -1,0 +1,11 @@
+export { heroSection } from './heroSection';
+export { headerSection } from './headerSection';
+export { faqSection } from './faqSection';
+export { featureSection } from './featureSection';
+export { featureSectionLeftImage } from './featureSectionLeftImage';
+export { featureSectionThreeCol } from './featureSectionThreeCol';
+export { logoCloudsSection } from './logoCloudsSection';
+export { testimonialSection } from './testimonialSection';
+export { ctaSection } from './ctaSection';
+export { imageSection } from './imageSection';
+export { subheaderSection } from './subheaderSection';

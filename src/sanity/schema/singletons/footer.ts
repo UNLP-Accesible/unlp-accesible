@@ -1,0 +1,133 @@
+import { maxItemsAllowed } from '@/sanity/lib/validations';
+import { SchemaTypeDefinition } from 'sanity';
+
+// Schema for the footer component
+export const footer: SchemaTypeDefinition = {
+  name: 'footer',
+  title: 'Footer',
+  type: 'object',
+  fields: [
+    {
+      name: 'companyMission',
+      title: 'Company Mission',
+      type: 'string',
+    },
+    {
+      name: 'socialMedia',
+      title: 'Social Media',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+            },
+            {
+              name: 'icon',
+              title: 'Icon',
+              type: 'string',
+              options: {
+                list: [
+                  {
+                    title: 'Facebook',
+                    value: 'facebook',
+                  },
+                  {
+                    title: 'GitHub',
+                    value: 'github',
+                  },
+                  {
+                    title: 'Instagram',
+                    value: 'instagram',
+                  },
+                  {
+                    title: 'Linkedin',
+                    value: 'linkedin',
+                  },
+                  {
+                    title: 'YouTube',
+                    value: 'youtube',
+                  },
+                  {
+                    title: 'X',
+                    value: 'x',
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'columns',
+      title: 'Columns',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+            },
+            {
+              name: 'links',
+              title: 'Links',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    {
+                      name: 'text',
+                      title: 'Text',
+                      type: 'string',
+                    },
+                    {
+                      name: 'url',
+                      title: 'URL',
+                      type: 'url',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'newsletter',
+      title: 'Newsletter',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Newsletter Title',
+              type: 'string',
+            },
+            {
+              name: 'subtitle',
+              title: 'Newsletter Subtitle',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+      validation: maxItemsAllowed(1),
+    },
+    {
+      name: 'copyright',
+      title: 'Copyright',
+      type: 'string',
+    },
+  ],
+};

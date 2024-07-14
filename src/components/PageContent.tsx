@@ -1,42 +1,53 @@
-import React from 'react';
-import { Page } from '@/sanity/lib/queries';
-import BlockContent from '@sanity/block-content-to-react';
-import SpanBlock from './SpanBlock';
+import { Page, SiteSettings } from '@/sanity/lib/queries';
+import { PortableText } from '@portabletext/react';
+import { urlForImage } from '@/sanity/lib/utils';
+import { NavigationSection, FooterSection, ImageSection } from '@/components/PageSection';
 
 interface PageContentProps {
   page: Page;
+  siteSettings: SiteSettings;
 }
 
-// Serializer to instruct BlockContent how to render blocks
-const serializers = {
-  types: {
-    block: (props: any) => {
-      // Apply styling for different styles if needed, here's an example for 'normal'
-      if (props.node.style === 'normal') {
-        return <SpanBlock>{props.children}</SpanBlock>;
-      }
+const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
+  if (!page?.content) {
+    return <div>No content yet</div>;
+  }
 
-      // Handle other styles, like 'h1', 'h2', etc.
-      // ...
+  const siteLogoSrc = urlForImage(siteSettings?.logo)?.url() ?? '';
+  const pageLogoSrc = urlForImage(page?.logo)?.url() ?? '';
 
-      // Default fall-back, render nothing for unknown styles
-      return null;
-    },
-  },
-  // This will handle inline span elements
-  marks: {
-    // Define custom mark serializers here if you have any
-  },
-};
-
-const PageContent: React.FC<PageContentProps> = ({ page }) => {
   return (
-    <div
-      className="text-sm font-semibold p-4 rounded-lg transition duration-300 ease-in-out"
-      style={{ color: page.contentColor, backgroundColor: page.contentBackgroundColor }}
-    >
-      <BlockContent blocks={page.content} serializers={serializers} />
-    </div>
+    <>
+      {!!page.navigationMenu && (
+        <NavigationSection title={page.navigationMenu.title} items={page.navigationMenu.items} />
+      )}
+      <PortableText
+        value={page.content}
+        components={{
+          types: {
+            block: (props) => {
+              return null;
+            },
+            imageSection: ({ value }) => {
+              return <ImageSection image={value.image} contentWidth={value.contentWidth} />;
+            },
+          },
+          // This will handle inline span elements
+          marks: {
+            // Define custom mark serializers here if you have any
+          },
+        }}
+      />
+      {!!page.footer && (
+        <FooterSection
+          companyMission={page.footer.companyMission}
+          columns={page.footer.columns}
+          socialMedia={page.footer.socialMedia}
+          newsletter={page.footer.newsletter}
+          copyright={page.footer.copyright}
+        />
+      )}
+    </>
   );
 };
 

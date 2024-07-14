@@ -14,4 +14,7 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  html {
+    @apply scroll-smooth;
+  }
 }
