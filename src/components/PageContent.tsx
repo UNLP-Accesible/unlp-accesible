@@ -17,37 +17,39 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
   const pageLogoSrc = urlForImage(page?.logo)?.url() ?? '';
 
   return (
-    <>
-      {!!page.navigationMenu && (
-        <NavigationSection title={page.navigationMenu.title} items={page.navigationMenu.items} />
-      )}
-      <PortableText
-        value={page.content}
-        components={{
-          types: {
-            block: (props) => {
-              return null;
+    <div className="container h-screen py-20 mx-auto px-4">
+      <div className="flex flex-col space-y-3">
+        {!!page.navigationMenu && (
+          <NavigationSection title={page.navigationMenu.title} items={page.navigationMenu.items} />
+        )}
+        <PortableText
+          value={page.content}
+          components={{
+            types: {
+              block: (props) => {
+                return null;
+              },
+              imageSection: ({ value }) => {
+                return <ImageSection image={value.image} contentWidth={value.contentWidth} />;
+              },
             },
-            imageSection: ({ value }) => {
-              return <ImageSection image={value.image} contentWidth={value.contentWidth} />;
+            // This will handle inline span elements
+            marks: {
+              // Define custom mark serializers here if you have any
             },
-          },
-          // This will handle inline span elements
-          marks: {
-            // Define custom mark serializers here if you have any
-          },
-        }}
-      />
-      {!!page.footer && (
-        <FooterSection
-          companyMission={page.footer.companyMission}
-          columns={page.footer.columns}
-          socialMedia={page.footer.socialMedia}
-          newsletter={page.footer.newsletter}
-          copyright={page.footer.copyright}
+          }}
         />
-      )}
-    </>
+        {!!page.footer && (
+          <FooterSection
+            companyMission={page.footer.companyMission}
+            columns={page.footer.columns}
+            socialMedia={page.footer.socialMedia}
+            newsletter={page.footer.newsletter}
+            copyright={page.footer.copyright}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 
