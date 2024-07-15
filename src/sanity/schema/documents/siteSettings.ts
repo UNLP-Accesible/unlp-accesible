@@ -26,10 +26,16 @@ export const siteSettings: SchemaTypeDefinition = {
       type: 'image',
     },
     {
-      name: 'companyMission',
+      name: 'mission',
       title: 'Company Mission',
       description: 'A text that will be reused in several places across the site, like the footer.',
       type: 'text',
+    },
+    {
+      name: 'backgroundColor',
+      title: 'Background Color',
+      type: 'color',
+      description: 'The default background color for the site',
     },
     { name: 'colors', title: 'Colors', type: 'colors', description: 'Define the colors that will be used in the site' },
   ],

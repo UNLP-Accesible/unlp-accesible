@@ -8,151 +8,82 @@ const pageFields = groq`
   title,
   siteTitle,
   description,
+  titleColor,
+  titleBackgroundColor,
+  contentColor,
+  contentBackgroundColor,
   logo{
-     ...,
-     asset->{
-     ...
-     }
+    ...,
+    asset->{
+      ...
+    }
   },
   "slug": slug.current,
   content[]{
     ...,
-    _type == 'heroSection' => {
-      useLogo,
-      hideContactForm,
-      mainChip,
-      secondaryChip,
-      chipLink,
-      heading,
-      subheading,
-      primaryCTA,
-      secondaryCTA,
-      formHeading,
-      backgroundImage{
-        ...,
-        asset->{
-          ...
-        }
-      },
-      backgroundColor,
-    },
-    _type == 'headerSection' => {
-      heading,
-      subheading
-    },
-    _type == 'featureSection' => {
-      heading,
-      features[]{
-        name,
-        description,
-        icon,
-        imageIcon{
-          ...,
-          asset->{
-            ...
-          }
-        }
-      }
-    },
-    _type == 'featureSectionLeftImage' => {
-      heading,
-      subheading,
-      description,
-      image{
-        ...,
-        asset->{
-          ...
-        }
-      },
-      responsiveImg{
-        image{
-          ...,
-          asset->{
-            ...
-          }
-        },
-        reuseMainImage,
-      },
-      features[]{
-        name,
-        description,
-        icon,
-        imageIcon{
-          ...,
-          asset->{
-            ...
-          }
-        }
-      }
-    },
-    _type == 'featureSectionThreeCol' => {
-      heading,
-      subheading,
-      features[]{
-        feature{
-          name,
-          description,
-          icon,
-          imageIcon{
-            ...,
-            asset->{
-              ...
-            }
-          },
-        },
-        link,
-      }
-    },
-    _type == 'logoCloudsSection' => {
-      heading,
-      logos[]{
-        name,
-        image{
-          ...,
-          asset->{
-            ...
-          }
-        }
-      }
-    },
-    _type == 'testimonialSection' => {
-      companyName,
-      companyLogo{
-        ...,
-        asset->{
-          ...
-        }
-      },
-      quote,
-      person,
-      personRole,
-      personImage{
-        ...,
-        asset->{
-          ...
-        }
-      },
-      backgroundColor,
-      textColor,
-    },
-    _type == 'ctaSection' => {
-      heading,
-      callToAction,
-      callToAction2,
-      backgroundColor,
-    },
     _type == 'imageSection' => {
       image{
         ...,
         asset->{
           ...
-        }, 
-        contentWidth,
-      }
+        }
+      },
+      contentWidth,
     },
-    _type == 'subheaderSection' => {
+    _type == 'textSection' => {
+      text,
+    },
+    _type == 'navigationItemSection' => {
+      text,
+      "page": page->{
+        title,
+        "slug": slug.current,
+        titleColor,
+        titleBackgroundColor,
+      },
+    },
+    _type == 'textWithUrlSection' => {
+      text,
+      url,
+    },
+    _type == 'formSection' => {
+      formId,
+      submitButtonText,
+      url,
+      method,
+      inputs[]{
+        label,
+        type,
+        name,
+      },
+    },
+    _type == 'iconsWithUrlSection' => {
+      icon{
+        ...,
+        asset->{
+          ...
+        }
+      },
+      url,
+    },
+    _type == 'iconsWithUrlAndTextSection' => {
+      icon{
+        ...,
+        asset->{
+          ...
+        }
+      },
+      url,
+      text,
+    },
+    _type == 'youtubeVideoSection' => {
+      videoUrl,
       title,
-      description
+    },
+    _type == 'sendEmailSection' => {
+      email,
+      subject,
+      body,
     },
     // Include queries for additional section types as needed
   },
@@ -174,7 +105,7 @@ const pageFields = groq`
     }
   },
   "footer": footer{
-    companyMission,
+    mission,
     socialMedia[]{
       text,
       url,
@@ -187,10 +118,6 @@ const pageFields = groq`
         url
       }
     },
-    newsletter[]{
-      title,
-      subtitle
-    },
     copyright
   },
   _updatedAt
@@ -202,7 +129,8 @@ export const siteSettingsQuery = groq`
   title,
   siteTitle,
   description,
-  companyMission,
+  mission,
+  backgroundColor,
   logo{
     ...,
     asset->{
@@ -239,60 +167,96 @@ export const pageBySlugQuery = groq`
 export interface CommonSectionProperties {
   _key: string;
   _type: string;
-  // Add additional fields per section type
 }
 
-export interface HeroSection extends CommonSectionProperties {
-  _type: 'heroSection';
-  useLogo: boolean;
-  hideContactForm: boolean;
-  heading: string;
-  subheading: string;
-  backgroundImage: Image;
-  backgroundColor: string;
-  callToAction: string;
-}
-
-export interface HeaderSection extends CommonSectionProperties {
-  _type: 'headerSection';
-  title: string;
-}
-
-export interface FaqSection extends CommonSectionProperties {
-  _type: 'faqSection';
-  title: string;
-  faqs: FAQ[];
-}
-
-export interface FeatureSection extends CommonSectionProperties {
-  _type: 'featureSection';
-  heading: string;
-  features: Feature[];
-}
-
-export interface Feature {
-  name: string;
-  description: string;
-  icon: string;
-}
-
-export interface LogoCloudsSection extends CommonSectionProperties {
-  _type: 'logoCloudsSection';
-  heading: string;
-  logos: Logo[];
-}
-
-export interface Logo {
-  name: string;
+export interface ImageSection extends CommonSectionProperties {
+  _type: 'imageSection';
   image: Image;
+  contentWidth: boolean;
 }
 
-export type Section = HeroSection | HeaderSection | FeatureSection;
+export interface TextSection extends CommonSectionProperties {
+  _type: 'textSection';
+  text: string;
+}
+
+export interface NavigationItemSection extends CommonSectionProperties {
+  _type: 'navigationItemSection';
+  text: string;
+  page: {
+    title: string;
+    slug: string;
+    titleColor?: Color;
+    titleBackgroundColor?: Color;
+  };
+}
+
+export interface TextWithUrlSection extends CommonSectionProperties {
+  _type: 'textWithUrlSection';
+  text: string;
+  url: string;
+}
+
+export interface FormSection extends CommonSectionProperties {
+  _type: 'formSection';
+  formId: string;
+  submitButtonText: string;
+  url: string;
+  method: string;
+  inputs: FormInput[];
+}
+
+export interface FormInput {
+  label: string;
+  type: string;
+  name: string;
+}
+
+export interface IconsWithUrlSection extends CommonSectionProperties {
+  _type: 'iconsWithUrlSection';
+  icon: Image;
+  url: string;
+}
+
+export interface IconsWithUrlAndTextSection extends CommonSectionProperties {
+  _type: 'iconsWithUrlAndTextSection';
+  icon: Image;
+  url: string;
+  text: string;
+}
+
+export interface YouTubeVideoSection extends CommonSectionProperties {
+  _type: 'youtubeVideoSection';
+  videoUrl: string;
+  title: string;
+}
+
+export interface SendEmailSection extends CommonSectionProperties {
+  _type: 'sendEmailSection';
+  email: string;
+  subject: string;
+  body: string;
+}
+
+export type Section =
+  | ImageSection
+  | TextSection
+  | NavigationItemSection
+  | TextWithUrlSection
+  | FormSection
+  | IconsWithUrlSection
+  | IconsWithUrlAndTextSection
+  | YouTubeVideoSection
+  | SendEmailSection;
 
 export interface Page {
   _id: string;
   title: string;
   siteTitle: string;
+  titleColor?: Color;
+  titleBackgroundColor?: Color;
+  contentColor?: Color;
+  contentBackgroundColor?: Color;
   logo?: Image;
   slug: string;
   content: Section[];
@@ -314,6 +278,7 @@ export interface NavigationItem {
   };
   children?: NavigationItem[];
 }
+
 export interface ColorRGB {
   r: string;
   g: string;
@@ -341,8 +306,9 @@ export interface SiteSettings {
   _type: 'siteSettings';
   title: string;
   siteTitle: string;
-  companyMission: string;
+  mission: string;
   logo: Image;
   colors: ColorsSchema;
   description: string;
+  backgroundColor?: Color;
 }

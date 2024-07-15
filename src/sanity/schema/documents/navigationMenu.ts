@@ -15,7 +15,7 @@ export const navigationMenu: SchemaTypeDefinition = {
       name: 'items',
       title: 'Navigation Items',
       type: 'array',
-      of: [{ type: 'navigationItem' }], // Uses the navigationItem type defined above
+      of: [{ type: 'navigationItem' }],
     },
   ],
 };

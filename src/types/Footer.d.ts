@@ -1,14 +1,8 @@
 export interface Footer {
-  companyMission: string;
+  mission: string;
   socialMedia: SocialMedia[];
   columns: Column[];
-  newsletter: Newsletter[];
   copyright: string;
-}
-
-interface Newsletter {
-  title: string;
-  subtitle: string;
 }
 
 interface SocialMedia {

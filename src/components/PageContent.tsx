@@ -1,7 +1,18 @@
 import { Page, SiteSettings } from '@/sanity/lib/queries';
 import { PortableText } from '@portabletext/react';
-import { urlForImage } from '@/sanity/lib/utils';
-import { NavigationSection, FooterSection, ImageSection } from '@/components/PageSection';
+import {
+  NavigationSection,
+  FooterSection,
+  ImageSection,
+  TextSection,
+  NavigationItemSection,
+  TextWithUrlSection,
+  FormSection,
+  IconsWithUrlSection,
+  IconsWithUrlAndTextSection,
+  YouTubeVideoSection,
+  SendEmailSection,
+} from '@/components/PageSection';
 
 interface PageContentProps {
   page: Page;
@@ -9,18 +20,24 @@ interface PageContentProps {
 }
 
 const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
-  if (!page?.content) {
-    return <div>No content yet</div>;
-  }
-
-  const siteLogoSrc = urlForImage(siteSettings?.logo)?.url() ?? '';
-  const pageLogoSrc = urlForImage(page?.logo)?.url() ?? '';
-
   return (
-    <div className="container h-screen py-20 mx-auto px-4">
+    <div
+      className="container h-screen py-4 mx-auto px-4"
+      style={{ backgroundColor: siteSettings.backgroundColor?.hex }}
+    >
       <div className="flex flex-col space-y-3">
-        {!!page.navigationMenu && (
-          <NavigationSection title={page.navigationMenu.title} items={page.navigationMenu.items} />
+        <NavigationSection
+          title={page.navigationMenu?.title}
+          items={page.navigationMenu?.items}
+          logo={page.logo || siteSettings.logo}
+        />
+        {page.slug !== 'home-page' && (
+          <div
+            className="text-lg font-semibold p-6 rounded-lg transition duration-300 ease-in-out"
+            style={{ color: page.titleColor?.hex, backgroundColor: page.titleBackgroundColor?.hex }}
+          >
+            {page.title}
+          </div>
         )}
         <PortableText
           value={page.content}
@@ -30,7 +47,98 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                 return null;
               },
               imageSection: ({ value }) => {
-                return <ImageSection image={value.image} contentWidth={value.contentWidth} />;
+                return (
+                  <ImageSection
+                    image={value.image}
+                    contentWidth={value.contentWidth}
+                    color={page.contentColor?.hex}
+                    backgroundColor={page.contentBackgroundColor?.hex}
+                  />
+                );
+              },
+              textSection: ({ value }) => {
+                return (
+                  <TextSection
+                    text={value.text}
+                    color={page.contentColor?.hex}
+                    backgroundColor={page.contentBackgroundColor?.hex}
+                  />
+                );
+              },
+              navigationItemSection: ({ value }) => {
+                return (
+                  <NavigationItemSection
+                    text={value.text}
+                    slug={value.page.slug}
+                    color={value.page.titleColor?.hex}
+                    backgroundColor={value.page.titleBackgroundColor?.hex}
+                  />
+                );
+              },
+              textWithUrlSection: ({ value }) => {
+                return (
+                  <TextWithUrlSection
+                    text={value.text}
+                    url={value.url}
+                    color={page.contentColor?.hex}
+                    backgroundColor={page.contentBackgroundColor?.hex}
+                  />
+                );
+              },
+              formSection: ({ value }) => {
+                return (
+                  <FormSection
+                    formId={value.formId}
+                    submitButtonText={value.submitButtonText}
+                    url={value.url}
+                    method={value.method}
+                    inputs={value.inputs}
+                    color={page.contentColor?.hex}
+                    backgroundColor={page.contentBackgroundColor?.hex}
+                  />
+                );
+              },
+              iconsWithUrlSection: ({ value }) => {
+                return (
+                  <IconsWithUrlSection
+                    icon={value.icon}
+                    url={value.url}
+                    color={page.contentColor?.hex}
+                    backgroundColor={page.contentBackgroundColor?.hex}
+                  />
+                );
+              },
+              iconsWithUrlAndTextSection: ({ value }) => {
+                return (
+                  <IconsWithUrlAndTextSection
+                    icon={value.icon}
+                    url={value.url}
+                    text={value.text}
+                    color={page.contentColor?.hex}
+                    backgroundColor={page.contentBackgroundColor?.hex}
+                  />
+                );
+              },
+              youtubeVideoSection: ({ value }) => {
+                return (
+                  <YouTubeVideoSection
+                    videoUrl={value.videoUrl}
+                    title={value.title}
+                    color={page.contentColor?.hex}
+                    backgroundColor={page.contentBackgroundColor?.hex}
+                  />
+                );
+              },
+              sendEmailSection: ({ value }) => {
+                return (
+                  <SendEmailSection
+                    email={value.email}
+                    subject={value.subject}
+                    body={value.body}
+                    color={page.contentColor?.hex}
+                    backgroundColor={page.contentBackgroundColor?.hex}
+                  />
+                );
               },
             },
             // This will handle inline span elements
@@ -41,10 +149,9 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
         />
         {!!page.footer && (
           <FooterSection
-            companyMission={page.footer.companyMission}
+            mission={page.footer.mission}
             columns={page.footer.columns}
             socialMedia={page.footer.socialMedia}
-            newsletter={page.footer.newsletter}
             copyright={page.footer.copyright}
           />
         )}

@@ -1,4 +1,3 @@
-import { maxItemsAllowed } from '@/sanity/lib/validations';
 import { SchemaTypeDefinition } from 'sanity';
 
 // Schema for the footer component
@@ -8,7 +7,7 @@ export const footer: SchemaTypeDefinition = {
   type: 'object',
   fields: [
     {
-      name: 'companyMission',
+      name: 'mission',
       title: 'Company Mission',
       type: 'string',
     },
@@ -100,29 +99,6 @@ export const footer: SchemaTypeDefinition = {
           ],
         },
       ],
-    },
-    {
-      name: 'newsletter',
-      title: 'Newsletter',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'title',
-              title: 'Newsletter Title',
-              type: 'string',
-            },
-            {
-              name: 'subtitle',
-              title: 'Newsletter Subtitle',
-              type: 'string',
-            },
-          ],
-        },
-      ],
-      validation: maxItemsAllowed(1),
     },
     {
       name: 'copyright',
