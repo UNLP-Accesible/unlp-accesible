@@ -1,4 +1,3 @@
-import DynamicIcon from '@/components/DynamicIcon';
 import { Footer } from '@/types/Footer';
 import Link from 'next/link';
 
@@ -15,7 +14,6 @@ const FooterSection: React.FC<Footer> = ({ mission, socialMedia, columns, copyri
               socialMedia.map((item, index) => (
                 <Link key={index} href={item.url ?? ''} className="text-gray-400 hover:text-gray-500">
                   <span className="sr-only">{item.icon}</span>
-                  <DynamicIcon name={item.icon} className="h-6 w-6" ariaHidden />
                 </Link>
               ))}
           </div>
