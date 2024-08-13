@@ -6,19 +6,36 @@ export const iconsWithUrlAndTextSection: SchemaTypeDefinition = {
   type: 'object',
   fields: [
     {
-      name: 'icon',
-      title: 'Icon',
-      type: 'image',
+      name: 'maxItemsPerRow',
+      title: 'Max Items Per Row',
+      type: 'number',
     },
     {
-      name: 'url',
-      title: 'URL',
-      type: 'url',
-    },
-    {
-      name: 'text',
-      title: 'Text',
-      type: 'string',
+      name: 'icons',
+      title: 'Icons',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'icon',
+              title: 'Icon',
+              type: 'image',
+            },
+            {
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+            },
+            {
+              name: 'text',
+              title: 'Text',
+              type: 'string',
+            },
+          ],
+        },
+      ],
     },
   ],
 };

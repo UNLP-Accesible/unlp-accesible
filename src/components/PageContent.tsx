@@ -6,9 +6,7 @@ import {
   ImageSection,
   TextSection,
   NavigationItemSection,
-  TextWithUrlSection,
   FormSection,
-  IconsWithUrlSection,
   IconsWithUrlAndTextSection,
   YouTubeVideoSection,
   SendEmailSection,
@@ -25,7 +23,7 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
       className="container h-screen py-4 mx-auto px-4"
       style={{ backgroundColor: siteSettings.backgroundColor?.hex }}
     >
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col space-y-3 h-full">
         <NavigationSection
           title={page.navigationMenu?.title}
           items={page.navigationMenu?.items}
@@ -59,6 +57,7 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
               textSection: ({ value }) => {
                 return (
                   <TextSection
+                    header={value.header}
                     text={value.text}
                     color={page.contentColor?.hex}
                     backgroundColor={page.contentBackgroundColor?.hex}
@@ -75,16 +74,6 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                   />
                 );
               },
-              textWithUrlSection: ({ value }) => {
-                return (
-                  <TextWithUrlSection
-                    text={value.text}
-                    url={value.url}
-                    color={page.contentColor?.hex}
-                    backgroundColor={page.contentBackgroundColor?.hex}
-                  />
-                );
-              },
               formSection: ({ value }) => {
                 return (
                   <FormSection
@@ -98,22 +87,11 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                   />
                 );
               },
-              iconsWithUrlSection: ({ value }) => {
-                return (
-                  <IconsWithUrlSection
-                    icon={value.icon}
-                    url={value.url}
-                    color={page.contentColor?.hex}
-                    backgroundColor={page.contentBackgroundColor?.hex}
-                  />
-                );
-              },
               iconsWithUrlAndTextSection: ({ value }) => {
                 return (
                   <IconsWithUrlAndTextSection
-                    icon={value.icon}
-                    url={value.url}
-                    text={value.text}
+                    icons={value.icons}
+                    maxItemsPerRow={value.maxItemsPerRow}
                     color={page.contentColor?.hex}
                     backgroundColor={page.contentBackgroundColor?.hex}
                   />
@@ -132,9 +110,7 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
               sendEmailSection: ({ value }) => {
                 return (
                   <SendEmailSection
-                    email={value.email}
-                    subject={value.subject}
-                    body={value.body}
+                    emailTo={value.emailTo}
                     color={page.contentColor?.hex}
                     backgroundColor={page.contentBackgroundColor?.hex}
                   />

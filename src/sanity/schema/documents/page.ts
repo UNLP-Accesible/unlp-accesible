@@ -42,11 +42,9 @@ export const page: SchemaTypeDefinition = {
       of: [
         { type: 'block' },
         { type: 'textSection' },
-        { type: 'textWithUrlSection' },
         { type: 'imageSection' },
         { type: 'navigationItemSection' },
         { type: 'formSection' },
-        { type: 'iconsWithUrlSection' },
         { type: 'iconsWithUrlAndTextSection' },
         { type: 'youtubeVideoSection' },
         { type: 'sendEmailSection' },

@@ -31,6 +31,7 @@ const pageFields = groq`
       contentWidth,
     },
     _type == 'textSection' => {
+      header,
       text,
     },
     _type == 'navigationItemSection' => {
@@ -41,10 +42,6 @@ const pageFields = groq`
         titleColor,
         titleBackgroundColor,
       },
-    },
-    _type == 'textWithUrlSection' => {
-      text,
-      url,
     },
     _type == 'formSection' => {
       formId,
@@ -57,33 +54,25 @@ const pageFields = groq`
         name,
       },
     },
-    _type == 'iconsWithUrlSection' => {
-      icon{
-        ...,
-        asset->{
-          ...
-        }
-      },
-      url,
-    },
     _type == 'iconsWithUrlAndTextSection' => {
-      icon{
-        ...,
-        asset->{
-          ...
-        }
+      maxItemsPerRow,
+      icons[]{
+        icon{
+          ...,
+          asset->{
+            ...
+          }
+        },
+        url,
+        text,
       },
-      url,
-      text,
     },
     _type == 'youtubeVideoSection' => {
       videoUrl,
       title,
     },
     _type == 'sendEmailSection' => {
-      email,
-      subject,
-      body,
+      emailTo,
     },
     // Include queries for additional section types as needed
   },
@@ -177,6 +166,7 @@ export interface ImageSection extends CommonSectionProperties {
 
 export interface TextSection extends CommonSectionProperties {
   _type: 'textSection';
+  header?: string;
   text: string;
 }
 
@@ -189,12 +179,6 @@ export interface NavigationItemSection extends CommonSectionProperties {
     titleColor?: Color;
     titleBackgroundColor?: Color;
   };
-}
-
-export interface TextWithUrlSection extends CommonSectionProperties {
-  _type: 'textWithUrlSection';
-  text: string;
-  url: string;
 }
 
 export interface FormSection extends CommonSectionProperties {
@@ -212,17 +196,14 @@ export interface FormInput {
   name: string;
 }
 
-export interface IconsWithUrlSection extends CommonSectionProperties {
-  _type: 'iconsWithUrlSection';
-  icon: Image;
-  url: string;
-}
-
 export interface IconsWithUrlAndTextSection extends CommonSectionProperties {
   _type: 'iconsWithUrlAndTextSection';
-  icon: Image;
-  url: string;
-  text: string;
+  maxItemsPerRow?: number;
+  icons: Array<{
+    icon: Image;
+    url: string;
+    text?: string;
+  }>;
 }
 
 export interface YouTubeVideoSection extends CommonSectionProperties {
@@ -233,18 +214,14 @@ export interface YouTubeVideoSection extends CommonSectionProperties {
 
 export interface SendEmailSection extends CommonSectionProperties {
   _type: 'sendEmailSection';
-  email: string;
-  subject: string;
-  body: string;
+  emailTo: string;
 }
 
 export type Section =
   | ImageSection
   | TextSection
   | NavigationItemSection
-  | TextWithUrlSection
   | FormSection
-  | IconsWithUrlSection
   | IconsWithUrlAndTextSection
   | YouTubeVideoSection
   | SendEmailSection;

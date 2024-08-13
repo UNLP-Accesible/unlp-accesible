@@ -6,19 +6,9 @@ export const sendEmailSection: SchemaTypeDefinition = {
   type: 'object',
   fields: [
     {
-      name: 'email',
-      title: 'Email',
+      name: 'emailTo',
+      title: 'Email To',
       type: 'string',
-    },
-    {
-      name: 'subject',
-      title: 'Subject',
-      type: 'string',
-    },
-    {
-      name: 'body',
-      title: 'Body',
-      type: 'text',
     },
   ],
 };

@@ -6,6 +6,11 @@ export const textSection: SchemaTypeDefinition = {
   type: 'object',
   fields: [
     {
+      name: 'header',
+      title: 'Header',
+      type: 'string',
+    },
+    {
       name: 'text',
       title: 'Text',
       type: 'string',
