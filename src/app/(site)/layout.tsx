@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Open_Sans } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { loadQuery } from '@sanity/react-loader';
@@ -12,15 +12,40 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = data?.siteTitle ?? '';
   const description = data?.description ?? '';
 
-  const metadata = {
+  const metadata: Metadata = {
+    applicationName: title,
     title,
-    description,
+    description: description,
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'default',
+      title: title,
+      // startUpImage: [],
+    },
+    formatDetection: {
+      telephone: false,
+    },
+    openGraph: {
+      type: 'website',
+      siteName: title,
+      title,
+      description,
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+    },
   };
 
   return metadata;
 }
 
 const openSans = Open_Sans({ subsets: ['latin'] });
+
+export const viewport: Viewport = {
+  themeColor: '#FFFFFF',
+};
 
 export default async function RootLayout({
   children,
@@ -30,7 +55,8 @@ export default async function RootLayout({
   const siteSettings = await loadQuery<SiteSettings>(siteSettingsQuery);
   const colors = siteSettings?.data?.colors;
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
+      <head />
       <body className={openSans.className}>
         <SiteColors colors={colors} />
         {children}

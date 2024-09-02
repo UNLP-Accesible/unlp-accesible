@@ -41,6 +41,12 @@ const pageFields = groq`
         "slug": slug.current,
         titleColor,
         titleBackgroundColor,
+        "logo": logo{
+          ...,
+          asset->{
+            ...
+          }
+        }
       },
     },
     _type == 'formSection' => {
@@ -178,6 +184,7 @@ export interface NavigationItemSection extends CommonSectionProperties {
     slug: string;
     titleColor?: Color;
     titleBackgroundColor?: Color;
+    logo?: Image;
   };
 }
 

@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import { Page, SiteSettings } from '@/sanity/lib/queries';
+import { urlForImage } from '@/sanity/lib/utils';
 import { PortableText } from '@portabletext/react';
 import {
   NavigationSection,
@@ -18,6 +20,8 @@ interface PageContentProps {
 }
 
 const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
+  const pageLogoSrc = page.logo ? urlForImage(page.logo)?.url() : '';
+
   return (
     <div
       className="container h-screen py-4 mx-auto px-4"
@@ -27,14 +31,17 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
         <NavigationSection
           title={page.navigationMenu?.title}
           items={page.navigationMenu?.items}
-          logo={page.logo || siteSettings.logo}
+          logo={siteSettings.logo}
         />
         {page.slug !== 'home-page' && (
           <div
-            className="text-lg font-semibold p-6 rounded-lg transition duration-300 ease-in-out"
+            className="flex flex-row items-center p-5 rounded-lg transition duration-300 ease-in-out"
             style={{ color: page.titleColor?.hex, backgroundColor: page.titleBackgroundColor?.hex }}
           >
-            {page.title}
+            {pageLogoSrc && <Image src={pageLogoSrc} alt="Logo" width={65} height={65} />}
+            <div className="flex-1">
+              <p className="text-lg text-center font-semibold">{page.title}</p>
+            </div>
           </div>
         )}
         <PortableText
@@ -65,10 +72,13 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                 );
               },
               navigationItemSection: ({ value }) => {
+                const logoSrc = value.page.logo ? urlForImage(value.page.logo)?.url() : undefined;
+
                 return (
                   <NavigationItemSection
                     text={value.text}
                     slug={value.page.slug}
+                    logo={logoSrc}
                     color={value.page.titleColor?.hex}
                     backgroundColor={value.page.titleBackgroundColor?.hex}
                   />
