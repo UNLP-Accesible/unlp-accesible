@@ -9,7 +9,7 @@ export const navigationItemSection: SchemaTypeDefinition = {
     {
       name: 'text',
       title: 'Text',
-      type: 'string',
+      type: 'text',
       validation: (Rule) => Rule.required(),
     },
     {

@@ -15,5 +15,15 @@ export const youtubeVideoSection: SchemaTypeDefinition = {
       title: 'Title',
       type: 'string',
     },
+    {
+      name: 'textBefore',
+      title: 'Text Before',
+      type: 'text',
+    },
+    {
+      name: 'textAfter',
+      title: 'Text After',
+      type: 'text',
+    },
   ],
 };

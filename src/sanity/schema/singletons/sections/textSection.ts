@@ -13,7 +13,7 @@ export const textSection: SchemaTypeDefinition = {
     {
       name: 'text',
       title: 'Text',
-      type: 'string',
+      type: 'text',
     },
   ],
 };

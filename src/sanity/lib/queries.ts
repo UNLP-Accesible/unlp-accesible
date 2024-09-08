@@ -76,6 +76,8 @@ const pageFields = groq`
     _type == 'youtubeVideoSection' => {
       videoUrl,
       title,
+      textBefore,
+      textAfter,
     },
     _type == 'sendEmailSection' => {
       emailTo,
@@ -217,6 +219,8 @@ export interface YouTubeVideoSection extends CommonSectionProperties {
   _type: 'youtubeVideoSection';
   videoUrl: string;
   title: string;
+  textBefore?: string;
+  textAfter?: string;
 }
 
 export interface SendEmailSection extends CommonSectionProperties {

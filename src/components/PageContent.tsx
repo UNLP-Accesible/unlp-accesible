@@ -112,6 +112,8 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                   <YouTubeVideoSection
                     videoUrl={value.videoUrl}
                     title={value.title}
+                    textAfter={value.textAfter}
+                    textBefore={value.textBefore}
                     color={page.contentColor?.hex}
                     backgroundColor={page.contentBackgroundColor?.hex}
                   />
