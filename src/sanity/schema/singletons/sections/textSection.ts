@@ -14,6 +14,14 @@ export const textSection: SchemaTypeDefinition = {
       name: 'text',
       title: 'Text',
       type: 'text',
+      deprecated: {
+        reason: 'Use the "content" field instead',
+      },
+    },
+    {
+      name: 'content',
+      title: 'Text',
+      type: 'customRichTextBlock',
     },
   ],
 };

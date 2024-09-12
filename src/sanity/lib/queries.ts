@@ -1,6 +1,8 @@
 import { groq } from 'next-sanity';
 import { Image } from 'sanity';
 import { Footer } from '@/types/Footer';
+import { PortableTextBlock } from '@portabletext/react';
+import { PortableTextListItemBlock } from '@portabletext/types';
 
 // Page fields definition to match our schema
 const pageFields = groq`
@@ -33,6 +35,9 @@ const pageFields = groq`
     _type == 'textSection' => {
       header,
       text,
+      content[]{
+        ...,
+      },
     },
     _type == 'navigationItemSection' => {
       text,
@@ -77,7 +82,13 @@ const pageFields = groq`
       videoUrl,
       title,
       textBefore,
+      contentBefore[]{
+        ...,
+      },
       textAfter,
+      contentAfter[]{
+        ...,
+      },
     },
     _type == 'sendEmailSection' => {
       emailTo,
@@ -161,7 +172,7 @@ export const pageBySlugQuery = groq`
 `;
 
 // TypeScript interfaces based on our schema
-export interface CommonSectionProperties {
+export interface CommonSectionProperties extends PortableTextListItemBlock {
   _key: string;
   _type: string;
 }
@@ -176,6 +187,7 @@ export interface TextSection extends CommonSectionProperties {
   _type: 'textSection';
   header?: string;
   text: string;
+  content?: PortableTextBlock;
 }
 
 export interface NavigationItemSection extends CommonSectionProperties {
@@ -220,7 +232,9 @@ export interface YouTubeVideoSection extends CommonSectionProperties {
   videoUrl: string;
   title: string;
   textBefore?: string;
+  contentBefore?: PortableTextBlock;
   textAfter?: string;
+  contentAfter?: PortableTextBlock;
 }
 
 export interface SendEmailSection extends CommonSectionProperties {

@@ -19,11 +19,27 @@ export const youtubeVideoSection: SchemaTypeDefinition = {
       name: 'textBefore',
       title: 'Text Before',
       type: 'text',
+      deprecated: {
+        reason: 'Use the "contentBefore" field instead',
+      },
+    },
+    {
+      name: 'contentBefore',
+      title: 'Conten Before',
+      type: 'customRichTextBlock',
     },
     {
       name: 'textAfter',
       title: 'Text After',
       type: 'text',
+      deprecated: {
+        reason: 'Use the "contentAfter" field instead',
+      },
+    },
+    {
+      name: 'contentAfter',
+      title: 'Content After',
+      type: 'customRichTextBlock',
     },
   ],
 };

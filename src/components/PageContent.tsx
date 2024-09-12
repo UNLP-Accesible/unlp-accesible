@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Page, SiteSettings } from '@/sanity/lib/queries';
 import { urlForImage } from '@/sanity/lib/utils';
-import { PortableText } from '@portabletext/react';
 import {
   NavigationSection,
   FooterSection,
@@ -13,6 +12,7 @@ import {
   YouTubeVideoSection,
   SendEmailSection,
 } from '@/components/PageSection';
+import CustomPortableText from './CustomPortableText';
 
 interface PageContentProps {
   page: Page;
@@ -44,94 +44,88 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
             </div>
           </div>
         )}
-        <PortableText
+        <CustomPortableText
           value={page.content}
-          components={{
-            types: {
-              block: (props) => {
-                return null;
-              },
-              imageSection: ({ value }) => {
-                return (
-                  <ImageSection
-                    image={value.image}
-                    contentWidth={value.contentWidth}
-                    color={page.contentColor?.hex}
-                    backgroundColor={page.contentBackgroundColor?.hex}
-                  />
-                );
-              },
-              textSection: ({ value }) => {
-                return (
-                  <TextSection
-                    header={value.header}
-                    text={value.text}
-                    color={page.contentColor?.hex}
-                    backgroundColor={page.contentBackgroundColor?.hex}
-                  />
-                );
-              },
-              navigationItemSection: ({ value }) => {
-                const logoSrc = value.page.logo ? urlForImage(value.page.logo)?.url() : undefined;
-
-                return (
-                  <NavigationItemSection
-                    text={value.text}
-                    slug={value.page.slug}
-                    logo={logoSrc}
-                    color={value.page.titleColor?.hex}
-                    backgroundColor={value.page.titleBackgroundColor?.hex}
-                  />
-                );
-              },
-              formSection: ({ value }) => {
-                return (
-                  <FormSection
-                    formId={value.formId}
-                    submitButtonText={value.submitButtonText}
-                    url={value.url}
-                    method={value.method}
-                    inputs={value.inputs}
-                    color={page.contentColor?.hex}
-                    backgroundColor={page.contentBackgroundColor?.hex}
-                  />
-                );
-              },
-              iconsWithUrlAndTextSection: ({ value }) => {
-                return (
-                  <IconsWithUrlAndTextSection
-                    icons={value.icons}
-                    maxItemsPerRow={value.maxItemsPerRow}
-                    color={page.contentColor?.hex}
-                    backgroundColor={page.contentBackgroundColor?.hex}
-                  />
-                );
-              },
-              youtubeVideoSection: ({ value }) => {
-                return (
-                  <YouTubeVideoSection
-                    videoUrl={value.videoUrl}
-                    title={value.title}
-                    textAfter={value.textAfter}
-                    textBefore={value.textBefore}
-                    color={page.contentColor?.hex}
-                    backgroundColor={page.contentBackgroundColor?.hex}
-                  />
-                );
-              },
-              sendEmailSection: ({ value }) => {
-                return (
-                  <SendEmailSection
-                    emailTo={value.emailTo}
-                    color={page.contentColor?.hex}
-                    backgroundColor={page.contentBackgroundColor?.hex}
-                  />
-                );
-              },
+          types={{
+            imageSection: ({ value }) => {
+              return (
+                <ImageSection
+                  image={value.image}
+                  contentWidth={value.contentWidth}
+                  color={page.contentColor?.hex}
+                  backgroundColor={page.contentBackgroundColor?.hex}
+                />
+              );
             },
-            // This will handle inline span elements
-            marks: {
-              // Define custom mark serializers here if you have any
+            textSection: ({ value }) => {
+              return (
+                <TextSection
+                  header={value.header}
+                  text={value.text}
+                  content={value.content}
+                  color={page.contentColor?.hex}
+                  backgroundColor={page.contentBackgroundColor?.hex}
+                />
+              );
+            },
+            navigationItemSection: ({ value }) => {
+              const logoSrc = value.page.logo ? urlForImage(value.page.logo)?.url() : undefined;
+
+              return (
+                <NavigationItemSection
+                  text={value.text}
+                  slug={value.page.slug}
+                  logo={logoSrc}
+                  color={value.page.titleColor?.hex}
+                  backgroundColor={value.page.titleBackgroundColor?.hex}
+                />
+              );
+            },
+            formSection: ({ value }) => {
+              return (
+                <FormSection
+                  formId={value.formId}
+                  submitButtonText={value.submitButtonText}
+                  url={value.url}
+                  method={value.method}
+                  inputs={value.inputs}
+                  color={page.contentColor?.hex}
+                  backgroundColor={page.contentBackgroundColor?.hex}
+                />
+              );
+            },
+            iconsWithUrlAndTextSection: ({ value }) => {
+              return (
+                <IconsWithUrlAndTextSection
+                  icons={value.icons}
+                  maxItemsPerRow={value.maxItemsPerRow}
+                  color={page.contentColor?.hex}
+                  backgroundColor={page.contentBackgroundColor?.hex}
+                />
+              );
+            },
+            youtubeVideoSection: ({ value }) => {
+              return (
+                <YouTubeVideoSection
+                  videoUrl={value.videoUrl}
+                  title={value.title}
+                  contentAfter={value.contentAfter}
+                  textAfter={value.textAfter}
+                  contentBefore={value.contentBefore}
+                  textBefore={value.textBefore}
+                  color={page.contentColor?.hex}
+                  backgroundColor={page.contentBackgroundColor?.hex}
+                />
+              );
+            },
+            sendEmailSection: ({ value }) => {
+              return (
+                <SendEmailSection
+                  emailTo={value.emailTo}
+                  color={page.contentColor?.hex}
+                  backgroundColor={page.contentBackgroundColor?.hex}
+                />
+              );
             },
           }}
         />
