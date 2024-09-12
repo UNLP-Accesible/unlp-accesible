@@ -16,12 +16,12 @@ export async function generateMetadata(): Promise<Metadata> {
     applicationName: title,
     title,
     description: description,
-    appleWebApp: {
-      capable: true,
-      statusBarStyle: 'default',
-      title: title,
-      // startUpImage: [],
-    },
+    // appleWebApp: {
+    //   capable: true,
+    //   statusBarStyle: 'default',
+    //   title: title,
+    //   // startUpImage: [],
+    // },
     formatDetection: {
       telephone: false,
     },
