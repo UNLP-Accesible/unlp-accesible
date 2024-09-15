@@ -1,4 +1,3 @@
-import { unique } from 'next/dist/build/utils';
 import { SchemaTypeDefinition } from 'sanity';
 
 // Schema for the page document
@@ -11,11 +10,13 @@ export const page: SchemaTypeDefinition = {
       name: 'title',
       title: 'Internal title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'siteTitle',
       title: 'Site Title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'description',
@@ -34,8 +35,8 @@ export const page: SchemaTypeDefinition = {
       options: {
         source: 'title',
         maxLength: 200,
-        isUnique: true,
       },
+      validation: (Rule) => Rule.required().unique(),
     },
     {
       name: 'content',
