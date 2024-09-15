@@ -71,13 +71,24 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
             navigationItemSection: ({ value }) => {
               const logoSrc = value.page.logo ? urlForImage(value.page.logo)?.url() : undefined;
 
+              // If the current page is not the home page, we want to use
+              // the color and background color for the content
+              // of the current page instead of the value.page
+              let color = value.page.titleColor?.hex;
+              let backgroundColor = value.page.titleBackgroundColor?.hex;
+
+              if (page.slug !== 'home-page') {
+                color = page.contentColor?.hex;
+                backgroundColor = page.contentBackgroundColor?.hex;
+              }
+
               return (
                 <NavigationItemSection
                   text={value.text}
                   slug={value.page.slug}
                   logo={logoSrc}
-                  color={value.page.titleColor?.hex}
-                  backgroundColor={value.page.titleBackgroundColor?.hex}
+                  color={color}
+                  backgroundColor={backgroundColor}
                 />
               );
             },
