@@ -1,3 +1,4 @@
+import { unique } from 'next/dist/build/utils';
 import { SchemaTypeDefinition } from 'sanity';
 
 // Schema for the page document
@@ -33,6 +34,7 @@ export const page: SchemaTypeDefinition = {
       options: {
         source: 'title',
         maxLength: 200,
+        isUnique: true,
       },
     },
     {

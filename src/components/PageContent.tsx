@@ -40,7 +40,7 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
           >
             {pageLogoSrc && <Image src={pageLogoSrc} alt="Logo" width={65} height={65} />}
             <div className="flex-1">
-              <p className="text-lg text-center font-semibold">{page.title}</p>
+              <p className="text-lg text-center font-semibold">{page.siteTitle || page.title}</p>
             </div>
           </div>
         )}
