@@ -195,6 +195,8 @@ export const pageBySlugQuery = groq`
 export interface CommonSectionProperties extends PortableTextListItemBlock {
   _key: string;
   _type: string;
+  contentColor?: Color;
+  contentBackgroundColor?: Color;
 }
 
 export interface ImageSection extends CommonSectionProperties {
