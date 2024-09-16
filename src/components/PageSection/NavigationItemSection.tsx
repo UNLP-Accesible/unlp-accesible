@@ -15,7 +15,7 @@ const NavigationItemSection: FC<NavigationItemSectionProps> = ({ text, logo, slu
     <a
       href={resolveHref('page', slug)}
       style={{ color, backgroundColor }}
-      className="flex flex-row items-center p-5 rounded-lg transition duration-300 ease-in-out"
+      className="flex flex-row items-center p-5 rounded-lg transition duration-300 ease-in-out min-h-[97px]"
     >
       {logo && (
         <div className="flex justify-center items-center" style={{ height: '55px', width: '55px' }}>

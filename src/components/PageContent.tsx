@@ -26,7 +26,7 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
 
   return (
     <div
-      className="container h-screen py-4 mx-auto px-4"
+      className="container h-screen py-4 mx-auto px-4 break-words"
       style={{ backgroundColor: siteSettings.backgroundColor?.hex }}
     >
       <div className="flex flex-col space-y-3 h-full">
@@ -37,7 +37,7 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
         />
         {page.slug !== 'home-page' && (
           <div
-            className="flex flex-row items-center p-5 rounded-lg transition duration-300 ease-in-out"
+            className="flex flex-row items-center p-5 rounded-lg transition duration-300 ease-in-out min-h-[97px]"
             style={{ color: page.titleColor?.hex, backgroundColor: page.titleBackgroundColor?.hex }}
           >
             {pageLogoSrc && <Image src={pageLogoSrc} alt="Logo" width={65} height={65} />}

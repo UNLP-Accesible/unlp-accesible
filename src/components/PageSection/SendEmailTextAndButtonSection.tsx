@@ -18,14 +18,14 @@ const SendEmailTextAndButtonSection: FC<SendEmailTextAndButtonSectionProps> = ({
   contentBefore,
 }) => {
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center w-full pt-2 pb-2">
       {contentBefore && <CustomPortableText value={contentBefore} />}
-      <p className="text-lg font-semibold">{name}</p>
+      <p className="font-semibold min-h-4 [&>span]:inline">{name}</p>
       <p className="text-md">{email}</p>
       <a
         href={`mailto:${email}`}
         style={{ color, backgroundColor }}
-        className="flex justify-center w-full mt-4 px-6 py-3 rounded-lg transition duration-300 ease-in-out"
+        className="flex justify-center items-center w-full mt-4 px-6 py-3 rounded-lg transition duration-300 ease-in-out min-h-[97px]"
       >
         <p className="text-lg text-center font-semibold">Enviar mail</p>
       </a>
