@@ -36,7 +36,7 @@ export const page: SchemaTypeDefinition = {
         source: 'title',
         maxLength: 200,
       },
-      validation: (Rule) => Rule.required().unique(),
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'content',
