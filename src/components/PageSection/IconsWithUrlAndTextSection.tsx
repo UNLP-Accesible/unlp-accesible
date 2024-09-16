@@ -29,7 +29,10 @@ const IconsWithUrlAndTextSection: FC<IconsWithUrlAndTextSectionProps> = ({
 
   return (
     <div style={{ color, backgroundColor }} className="p-6 rounded-lg h-full">
-      <div className={`grid ${hasText ? 'gap-5' : 'gap-10'}`} style={{ gridTemplateColumns }}>
+      <div
+        className={`grid ${hasText ? 'gap-5' : 'gap-10'} justify-items-center items-center h-full`}
+        style={{ gridTemplateColumns }}
+      >
         {icons.map((item, index) => {
           const iconSrc = urlForImage(item.icon)?.url();
           return (
@@ -37,14 +40,14 @@ const IconsWithUrlAndTextSection: FC<IconsWithUrlAndTextSectionProps> = ({
               key={index}
               href={item.url}
               style={{ color, backgroundColor }}
-              className="flex flex-col items-center justify-center text-lg font-semibold rounded-lg transition duration-300 ease-in-out"
+              className="flex flex-col items-center justify-center text-lg font-semibold rounded-lg transition duration-300 ease-in-out h-full"
             >
               {iconSrc && (
                 <div className="flex justify-center items-center" style={{ height: '65px', width: '65px' }}>
                   <Image src={iconSrc} alt="Icon" width={65} height={65} style={{ objectFit: 'contain' }} />
                 </div>
               )}
-              {item.text && <p className="mt-2 text-center">{item.text}</p>}
+              {item.text && <p className="mt-2 text-center flex-grow">{item.text}</p>}
             </a>
           );
         })}

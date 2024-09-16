@@ -26,10 +26,10 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
 
   return (
     <div
-      className="container h-screen py-4 mx-auto px-4 break-words"
+      className="container min-h-screen mx-auto px-4 break-words"
       style={{ backgroundColor: siteSettings.backgroundColor?.hex }}
     >
-      <div className="flex flex-col space-y-3 h-full">
+      <div className="flex-grow flex flex-col space-y-3 py-4 h-full">
         <NavigationSection
           title={page.navigationMenu?.title}
           items={page.navigationMenu?.items}

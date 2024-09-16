@@ -18,7 +18,7 @@ const SendEmailTextAndButtonSection: FC<SendEmailTextAndButtonSectionProps> = ({
   contentBefore,
 }) => {
   return (
-    <div className="flex flex-col items-center w-full pt-2 pb-2">
+    <div className="flex flex-col items-center w-full py-2">
       {contentBefore && <CustomPortableText value={contentBefore} />}
       <p className="font-semibold min-h-4 [&>span]:inline">{name}</p>
       <p className="text-md">{email}</p>
