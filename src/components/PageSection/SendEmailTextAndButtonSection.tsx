@@ -1,10 +1,13 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { PortableTextBlock } from '@portabletext/react';
+import CustomPortableText from '../CustomPortableText';
 
 interface SendEmailTextAndButtonSectionProps {
   name: string;
   email: string;
   color?: string;
   backgroundColor?: string;
+  contentBefore?: PortableTextBlock;
 }
 
 const SendEmailTextAndButtonSection: FC<SendEmailTextAndButtonSectionProps> = ({
@@ -12,9 +15,11 @@ const SendEmailTextAndButtonSection: FC<SendEmailTextAndButtonSectionProps> = ({
   email,
   color,
   backgroundColor,
+  contentBefore,
 }) => {
   return (
     <div className="flex flex-col items-center w-full">
+      {contentBefore && <CustomPortableText value={contentBefore} />}
       <p className="text-lg font-semibold">{name}</p>
       <p className="text-md">{email}</p>
       <a

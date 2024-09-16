@@ -7,6 +7,11 @@ export const sendEmailTextAndButtonSection: SchemaTypeDefinition = {
   type: 'object',
   fields: [
     {
+      name: 'contentBefore',
+      title: 'Content Before',
+      type: 'customRichTextBlock',
+    },
+    {
       name: 'name',
       title: 'Name',
       type: 'string',

@@ -110,9 +110,11 @@ const pageFields = groq`
     _type == 'sendEmailTextAndButtonSection' => {
       contentColor,
       contentBackgroundColor,
-      emailTo,
-      text,
-      buttonText,
+      name,
+      email,
+      contentBefore[]{
+        ...,
+      },
     },
     _type == 'externalLinkSection' => {
       contentColor,
@@ -273,9 +275,9 @@ export interface SendEmailSection extends CommonSectionProperties {
 
 export interface SendEmailTextAndButtonSection extends CommonSectionProperties {
   _type: 'sendEmailTextAndButtonSection';
-  emailTo: string;
-  text: string;
-  buttonText: string;
+  name: string;
+  email: string;
+  contentBefore?: PortableTextBlock;
 }
 
 export interface ExternalLinkSection extends CommonSectionProperties {

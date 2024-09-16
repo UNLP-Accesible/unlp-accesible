@@ -134,6 +134,7 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                 <SendEmailTextAndButtonSection
                   name={value.name}
                   email={value.email}
+                  contentBefore={value.contentBefore}
                   color={value.contentColor?.hex ?? page.contentColor?.hex}
                   backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
