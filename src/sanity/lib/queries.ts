@@ -24,6 +24,8 @@ const pageFields = groq`
   content[]{
     ...,
     _type == 'imageSection' => {
+      contentColor,
+      contentBackgroundColor,
       image{
         ...,
         asset->{
@@ -33,6 +35,8 @@ const pageFields = groq`
       contentWidth,
     },
     _type == 'textSection' => {
+      contentColor,
+      contentBackgroundColor,
       header,
       text,
       content[]{
@@ -40,6 +44,8 @@ const pageFields = groq`
       },
     },
     _type == 'navigationItemSection' => {
+      contentColor,
+      contentBackgroundColor,
       text,
       "page": page->{
         title,
@@ -55,6 +61,8 @@ const pageFields = groq`
       },
     },
     _type == 'formSection' => {
+      contentColor,
+      contentBackgroundColor,
       formId,
       submitButtonText,
       url,
@@ -66,6 +74,8 @@ const pageFields = groq`
       },
     },
     _type == 'iconsWithUrlAndTextSection' => {
+      contentColor,
+      contentBackgroundColor,
       maxItemsPerRow,
       icons[]{
         icon{
@@ -79,6 +89,8 @@ const pageFields = groq`
       },
     },
     _type == 'youtubeVideoSection' => {
+      contentColor,
+      contentBackgroundColor,
       videoUrl,
       title,
       textBefore,
@@ -91,9 +103,13 @@ const pageFields = groq`
       },
     },
     _type == 'sendEmailSection' => {
+      contentColor,
+      contentBackgroundColor,
       emailTo,
     },
     _type == 'externalLinkSection' => {
+      contentColor,
+      contentBackgroundColor,
       url,
       text,
     },

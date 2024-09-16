@@ -53,8 +53,8 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                 <ImageSection
                   image={value.image}
                   contentWidth={value.contentWidth}
-                  color={page.contentColor?.hex}
-                  backgroundColor={page.contentBackgroundColor?.hex}
+                  color={value.contentColor?.hex ?? page.contentColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
               );
             },
@@ -64,32 +64,21 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                   header={value.header}
                   text={value.text}
                   content={value.content}
-                  color={page.contentColor?.hex}
-                  backgroundColor={page.contentBackgroundColor?.hex}
+                  color={value.contentColor?.hex ?? page.contentColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
               );
             },
             navigationItemSection: ({ value }) => {
               const logoSrc = value.page.logo ? urlForImage(value.page.logo)?.url() : undefined;
 
-              // If the current page is not the home page, we want to use
-              // the color and background color for the content
-              // of the current page instead of the value.page
-              let color = value.page.titleColor?.hex;
-              let backgroundColor = value.page.titleBackgroundColor?.hex;
-
-              if (page.slug !== 'home-page') {
-                color = page.contentColor?.hex;
-                backgroundColor = page.contentBackgroundColor?.hex;
-              }
-
               return (
                 <NavigationItemSection
                   text={value.text}
                   slug={value.page.slug}
                   logo={logoSrc}
-                  color={color}
-                  backgroundColor={backgroundColor}
+                  color={value.contentColor?.hex ?? value.page.titleColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? value.page.titleBackgroundColor?.hex}
                 />
               );
             },
@@ -101,8 +90,8 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                   url={value.url}
                   method={value.method}
                   inputs={value.inputs}
-                  color={page.contentColor?.hex}
-                  backgroundColor={page.contentBackgroundColor?.hex}
+                  color={value.contentColor?.hex ?? page.contentColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
               );
             },
@@ -111,8 +100,8 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                 <IconsWithUrlAndTextSection
                   icons={value.icons}
                   maxItemsPerRow={value.maxItemsPerRow}
-                  color={page.contentColor?.hex}
-                  backgroundColor={page.contentBackgroundColor?.hex}
+                  color={value.contentColor?.hex ?? page.contentColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
               );
             },
@@ -125,8 +114,8 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                   textAfter={value.textAfter}
                   contentBefore={value.contentBefore}
                   textBefore={value.textBefore}
-                  color={page.contentColor?.hex}
-                  backgroundColor={page.contentBackgroundColor?.hex}
+                  color={value.contentColor?.hex ?? page.contentColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
               );
             },
@@ -134,8 +123,8 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
               return (
                 <SendEmailSection
                   emailTo={value.emailTo}
-                  color={page.contentColor?.hex}
-                  backgroundColor={page.contentBackgroundColor?.hex}
+                  color={value.contentColor?.hex ?? page.contentColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
               );
             },
@@ -144,8 +133,8 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
                 <ExternalLinkSection
                   text={value.text}
                   url={value.url}
-                  color={page.contentColor?.hex}
-                  backgroundColor={page.contentBackgroundColor?.hex}
+                  color={value.contentColor?.hex ?? page.contentColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
               );
             },

@@ -6,6 +6,16 @@ export const textSection: SchemaTypeDefinition = {
   type: 'object',
   fields: [
     {
+      name: 'contentColor',
+      title: 'Content Color',
+      type: 'color',
+    },
+    {
+      name: 'contentBackgroundColor',
+      title: 'Content Background Color',
+      type: 'color',
+    },
+    {
       name: 'header',
       title: 'Header',
       type: 'string',

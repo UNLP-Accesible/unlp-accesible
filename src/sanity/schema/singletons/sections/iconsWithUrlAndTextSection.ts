@@ -7,6 +7,16 @@ export const iconsWithUrlAndTextSection: SchemaTypeDefinition = {
   type: 'object',
   fields: [
     {
+      name: 'contentColor',
+      title: 'Content Color',
+      type: 'color',
+    },
+    {
+      name: 'contentBackgroundColor',
+      title: 'Content Background Color',
+      type: 'color',
+    },
+    {
       name: 'maxItemsPerRow',
       title: 'Max Items Per Row',
       type: 'number',

@@ -6,6 +6,16 @@ export const imageSection: SchemaTypeDefinition = {
   type: 'object',
   fields: [
     {
+      name: 'contentColor',
+      title: 'Content Color',
+      type: 'color',
+    },
+    {
+      name: 'contentBackgroundColor',
+      title: 'Content Background Color',
+      type: 'color',
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',

@@ -19,5 +19,15 @@ export const externalLinkSection: SchemaTypeDefinition = {
       type: 'url',
       validation: isValidUrl(['http', 'https', 'mailto', 'tel']),
     },
+    {
+      name: 'contentColor',
+      title: 'Content Color',
+      type: 'color',
+    },
+    {
+      name: 'contentBackgroundColor',
+      title: 'Content Background Color',
+      type: 'color',
+    },
   ],
 };
