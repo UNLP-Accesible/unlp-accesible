@@ -10,13 +10,13 @@ export const page: SchemaTypeDefinition = {
       name: 'title',
       title: 'Internal title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (rule) => rule.required(),
     },
     {
       name: 'siteTitle',
       title: 'Site Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (rule) => rule.required(),
     },
     {
       name: 'description',
@@ -36,7 +36,7 @@ export const page: SchemaTypeDefinition = {
         source: 'title',
         maxLength: 200,
       },
-      validation: (Rule) => Rule.required(),
+      validation: (rule) => rule.required(),
     },
     {
       name: 'content',

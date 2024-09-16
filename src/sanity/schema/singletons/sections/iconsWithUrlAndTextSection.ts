@@ -1,3 +1,4 @@
+import { isValidUrl } from '@/sanity/lib/validations';
 import { SchemaTypeDefinition } from 'sanity';
 
 export const iconsWithUrlAndTextSection: SchemaTypeDefinition = {
@@ -27,6 +28,7 @@ export const iconsWithUrlAndTextSection: SchemaTypeDefinition = {
               name: 'url',
               title: 'URL',
               type: 'url',
+              validation: isValidUrl(['http', 'https', 'mailto', 'tel']),
             },
             {
               name: 'text',
