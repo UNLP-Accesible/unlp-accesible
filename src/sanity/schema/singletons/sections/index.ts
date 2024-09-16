@@ -5,3 +5,4 @@ export { formSection } from './formSection';
 export { iconsWithUrlAndTextSection } from './iconsWithUrlAndTextSection';
 export { youtubeVideoSection } from './youtubeVideoSection';
 export { sendEmailSection } from './sendEmailSection';
+export { externalLinkSection } from './externalLinkSection';

@@ -8,6 +8,7 @@ import {
   iconsWithUrlAndTextSection,
   youtubeVideoSection,
   sendEmailSection,
+  externalLinkSection,
 } from './singletons/sections';
 import { footer } from './singletons/footer';
 import { page } from './documents/page';
@@ -21,6 +22,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     colors,
     customRichTextBlock,
     navigationItem,
+    externalLinkSection,
     navigationMenu,
     imageSection,
     textSection,

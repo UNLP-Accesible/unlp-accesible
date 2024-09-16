@@ -93,6 +93,10 @@ const pageFields = groq`
     _type == 'sendEmailSection' => {
       emailTo,
     },
+    _type == 'externalLinkSection' => {
+      url,
+      text,
+    },
     // Include queries for additional section types as needed
   },
   "navigationMenu": navigationMenu->{
@@ -242,6 +246,12 @@ export interface SendEmailSection extends CommonSectionProperties {
   emailTo: string;
 }
 
+export interface ExternalLinkSection extends CommonSectionProperties {
+  _type: 'externalLinkSection';
+  url: string;
+  text: string;
+}
+
 export type Section =
   | ImageSection
   | TextSection
@@ -249,7 +259,8 @@ export type Section =
   | FormSection
   | IconsWithUrlAndTextSection
   | YouTubeVideoSection
-  | SendEmailSection;
+  | SendEmailSection
+  | ExternalLinkSection;
 
 export interface Page {
   _id: string;

@@ -11,6 +11,7 @@ import {
   IconsWithUrlAndTextSection,
   YouTubeVideoSection,
   SendEmailSection,
+  ExternalLinkSection,
 } from '@/components/PageSection';
 import CustomPortableText from './CustomPortableText';
 
@@ -133,6 +134,16 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
               return (
                 <SendEmailSection
                   emailTo={value.emailTo}
+                  color={page.contentColor?.hex}
+                  backgroundColor={page.contentBackgroundColor?.hex}
+                />
+              );
+            },
+            externalLinkSection: ({ value }) => {
+              return (
+                <ExternalLinkSection
+                  text={value.text}
+                  url={value.url}
                   color={page.contentColor?.hex}
                   backgroundColor={page.contentBackgroundColor?.hex}
                 />

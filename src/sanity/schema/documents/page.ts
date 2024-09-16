@@ -51,6 +51,7 @@ export const page: SchemaTypeDefinition = {
         { type: 'iconsWithUrlAndTextSection' },
         { type: 'youtubeVideoSection' },
         { type: 'sendEmailSection' },
+        { type: 'externalLinkSection' },
         // Other section types can be added here as needed for the MVP.
       ],
     },
