@@ -3,7 +3,7 @@ import { SchemaTypeDefinition } from 'sanity';
 // Define the send email text and button section as a separate type for recursive use
 export const sendEmailTextAndButtonSection: SchemaTypeDefinition = {
   name: 'sendEmailTextAndButtonSection',
-  title: 'External Link',
+  title: 'Send Email Text and Button Section',
   type: 'object',
   fields: [
     {
