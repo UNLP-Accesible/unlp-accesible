@@ -107,6 +107,13 @@ const pageFields = groq`
       contentBackgroundColor,
       emailTo,
     },
+    _type == 'sendEmailTextAndButtonSection' => {
+      contentColor,
+      contentBackgroundColor,
+      emailTo,
+      text,
+      buttonText,
+    },
     _type == 'externalLinkSection' => {
       contentColor,
       contentBackgroundColor,
@@ -264,6 +271,13 @@ export interface SendEmailSection extends CommonSectionProperties {
   emailTo: string;
 }
 
+export interface SendEmailTextAndButtonSection extends CommonSectionProperties {
+  _type: 'sendEmailTextAndButtonSection';
+  emailTo: string;
+  text: string;
+  buttonText: string;
+}
+
 export interface ExternalLinkSection extends CommonSectionProperties {
   _type: 'externalLinkSection';
   url: string;
@@ -278,6 +292,7 @@ export type Section =
   | IconsWithUrlAndTextSection
   | YouTubeVideoSection
   | SendEmailSection
+  | SendEmailTextAndButtonSection
   | ExternalLinkSection;
 
 export interface Page {

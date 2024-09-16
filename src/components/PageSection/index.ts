@@ -8,3 +8,4 @@ export { default as IconsWithUrlAndTextSection } from './IconsWithUrlAndTextSect
 export { default as YouTubeVideoSection } from './YouTubeVideoSection';
 export { default as SendEmailSection } from './SendEmailSection';
 export { default as ExternalLinkSection } from './ExternalLinkSection';
+export { default as SendEmailTextAndButtonSection } from './SendEmailTextAndButtonSection';

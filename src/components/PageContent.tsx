@@ -12,6 +12,7 @@ import {
   YouTubeVideoSection,
   SendEmailSection,
   ExternalLinkSection,
+  SendEmailTextAndButtonSection,
 } from '@/components/PageSection';
 import CustomPortableText from './CustomPortableText';
 
@@ -123,6 +124,16 @@ const PageContent: React.FC<PageContentProps> = ({ page, siteSettings }) => {
               return (
                 <SendEmailSection
                   emailTo={value.emailTo}
+                  color={value.contentColor?.hex ?? page.contentColor?.hex}
+                  backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
+                />
+              );
+            },
+            sendEmailTextAndButtonSection: ({ value }) => {
+              return (
+                <SendEmailTextAndButtonSection
+                  name={value.name}
+                  email={value.email}
                   color={value.contentColor?.hex ?? page.contentColor?.hex}
                   backgroundColor={value.contentBackgroundColor?.hex ?? page.contentBackgroundColor?.hex}
                 />
