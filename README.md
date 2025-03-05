@@ -12,6 +12,8 @@ This project was initialized with [create-awesome-node-app](https://www.npmjs.co
 
 Discover more about the project structure, available scripts, and much more in the [docs](./docs) folder!
 
+- [Docker Instructions](./docs/DOCKER.md)
+
 ## Pre-packed Development Tools
 
 - [TypeScript](https://www.typescriptlang.org/) - For type-safe code.
@@ -23,8 +25,15 @@ Discover more about the project structure, available scripts, and much more in t
 ## Quick Start
 
 ```sh
+# Install the correct version of Node.js
+# and install the project dependencies
 fnm use
 pnpm install
+
+# Generate a .env.local file using Sanity
+pnpm run setup
+
+# Start the development server
 pnpm run dev
 ```
 
