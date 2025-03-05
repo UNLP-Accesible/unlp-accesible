@@ -1,0 +1,8 @@
+.devcontainer
+.git
+.github
+.husky
+build
+dist
+node_modules
+tools

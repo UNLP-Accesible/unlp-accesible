@@ -7,6 +7,7 @@ const withSerwist = withSerwistInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   experimental: {
     // Used to guard against accidentally leaking SANITY_API_READ_TOKEN to the browser
     taint: true,
