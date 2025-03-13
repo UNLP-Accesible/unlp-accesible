@@ -12,7 +12,9 @@ This project was initialized with [create-awesome-node-app](https://www.npmjs.co
 
 Discover more about the project structure, available scripts, and much more in the [docs](./docs) folder!
 
-- [Docker Instructions](./docs/DOCKER.md)
+- Building and deploying the application with [Docker](./docs/DOCKER.md).
+- Building and running the application with [Docker Compose](./docs/DOCKER_COMPOSE.md).
+- and more!
 
 ## Pre-packed Development Tools
 
