@@ -7,6 +7,9 @@ This project was initialized with [create-awesome-node-app](https://www.npmjs.co
 - ⚡️ **Instant HMR (Hot Module Replacement)** - Leveraging Next.js for fast refreshes and updates during development.
 - ⚛ **React Integration** - Utilizes [React](https://reactjs.org/) for building the user interface.
 - 🦾 **TypeScript Support** - Ensures type safety with [TypeScript](https://www.typescriptlang.org/).
+- 🐳 **Docker Support** - Build and run the application using Docker.
+- 🐙 **Docker Compose** - Simplify multi-container Docker applications.
+- 🖥️ **Dev Containers** - Pre-configured development environment using VSCode Dev Containers.
 
 ## Extra Documentation
 
