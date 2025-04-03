@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
+import React, { FC } from 'react';
+import { type Image as ImageType } from 'sanity';
 import { urlForImage } from '@/sanity/lib/utils';
-import { Image as ImageType } from 'sanity';
 
 interface IconWithUrlAndText {
   icon: ImageType;

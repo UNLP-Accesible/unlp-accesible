@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import React, { FC } from 'react';
 import { resolveHref } from '@/sanity/lib/utils';
-import Image from 'next/image';
 
 interface NavigationItemSectionProps {
   text: string;

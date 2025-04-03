@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import { type SchemaTypeDefinition } from 'sanity';
 // in this schema I want to define different variant colors to be used by tailwind
 export const siteSettings: SchemaTypeDefinition = {
   name: 'siteSettings',

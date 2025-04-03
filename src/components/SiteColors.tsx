@@ -1,7 +1,7 @@
 'use client';
 
-import { ColorsSchema } from '@/sanity/lib/queries';
 import { useEffect } from 'react';
+import { ColorsSchema } from '@/sanity/lib/queries';
 
 const SiteColors = ({ colors }: { colors: ColorsSchema }) => {
   useEffect(() => {

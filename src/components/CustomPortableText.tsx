@@ -1,12 +1,12 @@
-import React from 'react';
 import {
   PortableText,
-  PortableTextReactComponents,
-  PortableTextProps,
-  PortableTextBlock,
-  PortableTextTypeComponent,
+  type PortableTextBlock,
+  type PortableTextProps,
+  type PortableTextReactComponents,
+  type PortableTextTypeComponent,
 } from '@portabletext/react';
 import Link from 'next/link';
+import React from 'react';
 
 export type CustomPortableTextProps<T extends PortableTextBlock> = {
   value: PortableTextProps<T>['value'];

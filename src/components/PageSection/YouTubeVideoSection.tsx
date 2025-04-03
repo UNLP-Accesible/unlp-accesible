@@ -1,5 +1,5 @@
+import { type PortableTextBlock } from '@portabletext/react';
 import React, { FC } from 'react';
-import { PortableTextBlock } from '@portabletext/react';
 import CustomRichTextBlock from '../CustomPortableText';
 
 interface YouTubeVideoSectionProps {

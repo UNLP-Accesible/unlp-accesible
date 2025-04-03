@@ -1,8 +1,8 @@
+import { type PortableTextBlock } from '@portabletext/react';
+import { type PortableTextListItemBlock } from '@portabletext/types';
 import { groq } from 'next-sanity';
-import { Image } from 'sanity';
+import { type Image as ImageType } from 'sanity';
 import { Footer } from '@/types/Footer';
-import { PortableTextBlock } from '@portabletext/react';
-import { PortableTextListItemBlock } from '@portabletext/types';
 
 // Page fields definition to match our schema
 const pageFields = groq`
@@ -210,7 +210,7 @@ export interface CommonSectionProperties extends PortableTextListItemBlock {
 
 export interface ImageSection extends CommonSectionProperties {
   _type: 'imageSection';
-  image: Image;
+  image: ImageType;
   contentWidth: boolean;
 }
 
@@ -229,7 +229,7 @@ export interface NavigationItemSection extends CommonSectionProperties {
     slug: string;
     titleColor?: Color;
     titleBackgroundColor?: Color;
-    logo?: Image;
+    logo?: ImageType;
   };
 }
 
@@ -252,7 +252,7 @@ export interface IconsWithUrlAndTextSection extends CommonSectionProperties {
   _type: 'iconsWithUrlAndTextSection';
   maxItemsPerRow?: number;
   icons: Array<{
-    icon: Image;
+    icon: ImageType;
     url: string;
     text?: string;
   }>;
@@ -305,7 +305,7 @@ export interface Page {
   titleBackgroundColor?: Color;
   contentColor?: Color;
   contentBackgroundColor?: Color;
-  logo?: Image;
+  logo?: ImageType;
   slug: string;
   content: Section[];
   navigationMenu: NavigationMenu;
@@ -355,7 +355,7 @@ export interface SiteSettings {
   title: string;
   siteTitle: string;
   mission: string;
-  logo: Image;
+  logo: ImageType;
   colors: ColorsSchema;
   description: string;
   backgroundColor?: Color;

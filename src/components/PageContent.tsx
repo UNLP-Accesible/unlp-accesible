@@ -1,19 +1,19 @@
 import Image from 'next/image';
-import { Page, SiteSettings } from '@/sanity/lib/queries';
-import { urlForImage } from '@/sanity/lib/utils';
 import {
-  NavigationSection,
+  ExternalLinkSection,
   FooterSection,
-  ImageSection,
-  TextSection,
-  NavigationItemSection,
   FormSection,
   IconsWithUrlAndTextSection,
-  YouTubeVideoSection,
+  ImageSection,
+  NavigationItemSection,
+  NavigationSection,
   SendEmailSection,
-  ExternalLinkSection,
   SendEmailTextAndButtonSection,
+  TextSection,
+  YouTubeVideoSection,
 } from '@/components/PageSection';
+import { Page, SiteSettings } from '@/sanity/lib/queries';
+import { urlForImage } from '@/sanity/lib/utils';
 import CustomPortableText from './CustomPortableText';
 
 interface PageContentProps {

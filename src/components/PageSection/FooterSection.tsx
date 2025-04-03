@@ -1,5 +1,5 @@
-import { Footer } from '@/types/Footer';
 import Link from 'next/link';
+import { Footer } from '@/types/Footer';
 
 const dynamicColumnsClass = '[repeat(auto-fit,_minmax(1rem,_1fr))]';
 

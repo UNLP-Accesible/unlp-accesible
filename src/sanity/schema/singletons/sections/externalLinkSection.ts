@@ -1,5 +1,5 @@
+import { type SchemaTypeDefinition } from 'sanity';
 import { isValidUrl } from '@/sanity/lib/validations';
-import { SchemaTypeDefinition } from 'sanity';
 
 // Define the external link section as a separate type for recursive use
 export const externalLinkSection: SchemaTypeDefinition = {

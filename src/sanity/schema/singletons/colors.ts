@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import { type SchemaTypeDefinition } from 'sanity';
 
 // Schema for the colors singleton
 export const colors: SchemaTypeDefinition = {

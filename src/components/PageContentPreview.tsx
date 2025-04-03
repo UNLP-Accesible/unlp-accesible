@@ -1,7 +1,7 @@
 'use client';
 
-import { Page, SiteSettings, pageBySlugQuery, siteSettingsQuery } from '@/sanity/lib/queries';
 import { QueryResponseInitial, useQuery } from '@sanity/react-loader';
+import { Page, pageBySlugQuery, SiteSettings, siteSettingsQuery } from '@/sanity/lib/queries';
 import PageContent from './PageContent';
 
 export default function PagePreview({

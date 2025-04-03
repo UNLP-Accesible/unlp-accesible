@@ -1,22 +1,22 @@
-import { SchemaTypeDefinition } from 'sanity';
+import { type SchemaTypeDefinition } from 'sanity';
 import { navigationMenu } from './documents/navigationMenu';
-import {
-  imageSection,
-  textSection,
-  navigationItemSection,
-  formSection,
-  iconsWithUrlAndTextSection,
-  youtubeVideoSection,
-  sendEmailSection,
-  externalLinkSection,
-  sendEmailTextAndButtonSection,
-} from './singletons/sections';
-import { footer } from './singletons/footer';
 import { page } from './documents/page';
 import { siteSettings } from './documents/siteSettings';
-import { navigationItem } from './singletons/navigationItem';
 import { colors } from './singletons/colors';
+import { footer } from './singletons/footer';
+import { navigationItem } from './singletons/navigationItem';
 import { customRichTextBlock } from './singletons/richText';
+import {
+  externalLinkSection,
+  formSection,
+  iconsWithUrlAndTextSection,
+  imageSection,
+  navigationItemSection,
+  sendEmailSection,
+  sendEmailTextAndButtonSection,
+  textSection,
+  youtubeVideoSection,
+} from './singletons/sections';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [

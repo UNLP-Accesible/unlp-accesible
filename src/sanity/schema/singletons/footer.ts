@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import { type SchemaTypeDefinition } from 'sanity';
 
 // Schema for the footer component
 export const footer: SchemaTypeDefinition = {

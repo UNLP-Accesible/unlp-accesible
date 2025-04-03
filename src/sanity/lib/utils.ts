@@ -1,5 +1,5 @@
 import createImageUrlBuilder from '@sanity/image-url';
-import { ImageUrlBuilder } from 'sanity';
+import { type Image as ImageType, type ImageUrlBuilder } from 'sanity';
 
 import { dataset, projectId } from '@/sanity/env';
 import { ColorRGB } from './queries';
@@ -9,7 +9,7 @@ const imageBuilder = createImageUrlBuilder({
   dataset: dataset || '',
 });
 
-export const urlForImage = (source: any, quality?: number): ImageUrlBuilder | undefined => {
+export const urlForImage = (source: ImageType, quality?: number): ImageUrlBuilder | undefined => {
   if (!source?.asset) {
     return undefined;
   }

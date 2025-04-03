@@ -7,8 +7,8 @@ import { validatePreviewUrl } from '@sanity/preview-url-secret';
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { client } from '@/sanity/lib/client';
 import { readToken } from '@/sanity/env';
+import { client } from '@/sanity/lib/client';
 
 const clientWithToken = client.withConfig({ token: readToken });
 

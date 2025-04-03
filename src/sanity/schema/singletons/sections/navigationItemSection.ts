@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import { type SchemaTypeDefinition } from 'sanity';
 
 // Define the navigation item as a separate type for recursive use
 export const navigationItemSection: SchemaTypeDefinition = {

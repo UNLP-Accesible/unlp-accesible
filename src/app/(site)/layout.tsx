@@ -1,10 +1,10 @@
+import { loadQuery } from '@sanity/react-loader';
 import type { Metadata, Viewport } from 'next';
 import { Open_Sans } from 'next/font/google';
 import { draftMode } from 'next/headers';
-import { loadQuery } from '@sanity/react-loader';
 import LiveVisualEditing from '@/components/LiveVisualEditing';
-import { SiteSettings, siteSettingsQuery } from '@/sanity/lib/queries';
 import SiteColors from '@/components/SiteColors';
+import { SiteSettings, siteSettingsQuery } from '@/sanity/lib/queries';
 import '../globals.css';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -54,13 +54,14 @@ export default async function RootLayout({
 }>) {
   const siteSettings = await loadQuery<SiteSettings>(siteSettingsQuery);
   const colors = siteSettings?.data?.colors;
+  const isDraftMode = await draftMode();
   return (
     <html lang="en" dir="ltr">
       <head />
       <body className={openSans.className}>
         <SiteColors colors={colors} />
         {children}
-        {draftMode().isEnabled && <LiveVisualEditing />}
+        {isDraftMode.isEnabled && <LiveVisualEditing />}
       </body>
     </html>
   );

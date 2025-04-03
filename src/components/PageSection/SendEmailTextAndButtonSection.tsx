@@ -1,5 +1,5 @@
+import { type PortableTextBlock } from '@portabletext/react';
 import { FC } from 'react';
-import { PortableTextBlock } from '@portabletext/react';
 import CustomPortableText from '../CustomPortableText';
 
 interface SendEmailTextAndButtonSectionProps {

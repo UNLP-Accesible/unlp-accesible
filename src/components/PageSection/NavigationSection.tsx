@@ -1,9 +1,10 @@
 'use client';
 
+import Image from 'next/image';
+import Link from 'next/link';
+import { type Image as ImageType } from 'sanity';
 import { NavigationItem } from '@/sanity/lib/queries';
 import { resolveHref, urlForImage } from '@/sanity/lib/utils';
-import Image from 'next/image';
-import { Image as ImageType } from 'sanity';
 
 interface NavigationSectionProps {
   title: string;
@@ -11,25 +12,25 @@ interface NavigationSectionProps {
   logo?: ImageType;
 }
 
-const NavigationSection: React.FC<NavigationSectionProps> = ({ title, items = [], logo }) => {
+const NavigationSection: React.FC<NavigationSectionProps> = ({ title: _, items = [], logo }) => {
   const logoSrc = logo ? urlForImage(logo)?.url() : '';
 
   return (
     <nav className="flex items-center space-x-4">
       {logoSrc && (
-        <a href="/" className="flex-shrink-0">
+        <Link href="/" className="flex-shrink-0">
           <Image src={logoSrc} alt="Logo" width={75} height={75} />
-        </a>
+        </Link>
       )}
       <div className="flex space-x-4">
         {items.map((item, index) => (
-          <a
+          <Link
             key={`nav-item-${index}`}
-            href={resolveHref('page', item.page?.slug)}
+            href={resolveHref('page', item.page?.slug) ?? ''}
             className="text-lg font-semibold rounded-lg transition duration-300 ease-in-out"
           >
             {item.text}
-          </a>
+          </Link>
         ))}
       </div>
     </nav>

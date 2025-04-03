@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import { type SchemaTypeDefinition } from 'sanity';
 
 // Define the send email text and button section as a separate type for recursive use
 export const sendEmailTextAndButtonSection: SchemaTypeDefinition = {

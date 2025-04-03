@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity';
+import { type SchemaTypeDefinition } from 'sanity';
 
 // Schema for the navigation menu, which now includes nested items
 export const navigationMenu: SchemaTypeDefinition = {

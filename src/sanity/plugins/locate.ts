@@ -1,5 +1,5 @@
-import { DocumentLocationResolver } from 'sanity/presentation';
 import { map } from 'rxjs';
+import { type DocumentLocationResolver } from 'sanity/presentation';
 
 // Pass 'context' as the second argument
 export const locate: DocumentLocationResolver = (params, context) => {
@@ -8,7 +8,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
     // Subscribe to the latest slug and title
     const doc$ = context.documentStore.listenQuery(
       `*[_id == $id][0]{slug,title}`,
-      params,
+      { id: params.id },
       { perspective: 'previewDrafts' }, // returns a draft article if it exists
     );
     // Return a streaming list of locations
