@@ -9,12 +9,12 @@ This document provides instructions for building and running the Next.js applica
 
 ## Setup Environment Variables
 
-Create a `.env.local` file in the root of the project using the provided example:
+Create a `.env` file in the root of the project using the provided example:
 
 ```sh
-cp .env.example .env.local
+cp .env.example .env
 
-# Update the values in the .env.local file
+# Update the values in the .env file
 ```
 
 ## Development Build

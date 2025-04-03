@@ -6,11 +6,13 @@ import { Page, pageBySlugQuery, SiteSettings, siteSettingsQuery } from '@/sanity
 import { loadQuery } from '@/sanity/lib/store';
 
 interface SlugPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { data } = await loadQuery<SiteSettings>(pageBySlugQuery, { slug: params.slug }, { stega: false });
+export async function generateMetadata({ params }: SlugPageProps): Promise<Metadata> {
+  const slug = (await params).slug;
+
+  const { data } = await loadQuery<SiteSettings>(pageBySlugQuery, { slug }, { stega: false });
   const title = data?.siteTitle ?? '';
   const description = data?.description ?? '';
 
@@ -21,12 +23,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return metadata;
 }
 
-export default async function SlugPage({ params }: { params: { slug: string } }) {
+export default async function SlugPage({ params }: SlugPageProps) {
+  const slug = (await params).slug;
+
   const siteSettings = await loadQuery<SiteSettings>(siteSettingsQuery);
   const isDraftMode = await draftMode();
   const initialPageValue = await loadQuery<Page>(
     pageBySlugQuery,
-    { slug: params.slug },
+    { slug },
     {
       perspective: isDraftMode.isEnabled ? 'previewDrafts' : 'published',
     },
