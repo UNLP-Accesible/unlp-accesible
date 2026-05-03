@@ -41,6 +41,7 @@ jobs:
       - name: Setup pnpm and install dependencies
         uses: pnpm/action-setup@v6
         with:
+          version: '9'
           run_install: true
 
       - name: Danger JS Action
