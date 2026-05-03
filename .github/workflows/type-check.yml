@@ -16,33 +16,27 @@ permissions:
 
 jobs:
   type-check:
-    if: github.event_name != 'pull_request' || (github.event_name == 'pull_request' && github.event.pull_request.draft == false)
+    if: >-
+      github.event_name != 'pull_request' ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.draft == false)
 
     runs-on: ubuntu-latest
 
     steps:
       - name: Begin CI...
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
 
-      - name: Install dependencies
-        run: |
-          # Install dependencies based on the lockfile and the package manager
-          if [ -f "yarn.lock" ]; then
-            yarn install --frozen-lockfile
-          elif [ -f "package-lock.json" ]; then
-            npm install
-          elif [ -f "pnpm-lock.yaml" ]; then
-            yarn global add pnpm
-            pnpm install
-          else
-            echo "No lockfile found. Please add a lockfile to your repository."
-            exit 1
-          fi
+      - name: Setup pnpm and install dependencies
+        uses: pnpm/action-setup@v6
+        with:
+          version: '10'
+          run_install: true
 
       - name: Run type-check validation
-        run: npm run type-check --if-present
+        run: pnpm run --if-present type-check

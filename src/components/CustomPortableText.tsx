@@ -7,6 +7,7 @@ import {
 } from '@portabletext/react';
 import Link from 'next/link';
 import React from 'react';
+import { sanitizeUrl } from '@/lib/sanitize';
 
 export type CustomPortableTextProps<T extends PortableTextBlock> = {
   value: PortableTextProps<T>['value'];
@@ -29,7 +30,7 @@ function CustomPortableText<T extends PortableTextBlock>({ value, types = {} }: 
     marks: {
       link: ({ value: { url, blank }, children }) => (
         <Link
-          href={url ?? ''}
+          href={sanitizeUrl(url)}
           target={blank ? '_blank' : '_self'}
           rel={blank ? 'noopener noreferrer' : ''}
           className="underline font-semibold"

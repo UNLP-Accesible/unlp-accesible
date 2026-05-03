@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { sanitizeUrl } from '@/lib/sanitize';
 import { Footer } from '@/types/Footer';
 
 const dynamicColumnsClass = '[repeat(auto-fit,_minmax(1rem,_1fr))]';
@@ -12,7 +13,11 @@ const FooterSection: React.FC<Footer> = ({ mission, socialMedia, columns, copyri
           <div className="flex space-x-6">
             {socialMedia &&
               socialMedia.map((item, index) => (
-                <Link key={index} href={item.url ?? ''} className="text-gray-400 hover:text-gray-500">
+                <Link
+                  key={index}
+                  href={sanitizeUrl(item.url)}
+                  className="text-gray-400 hover:text-gray-500"
+                >
                   <span className="sr-only">{item.icon}</span>
                 </Link>
               ))}
@@ -28,7 +33,10 @@ const FooterSection: React.FC<Footer> = ({ mission, socialMedia, columns, copyri
                     {column.links &&
                       column.links.map((link, index) => (
                         <li key={index}>
-                          <Link href={link.url ?? ''} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
+                          <Link
+                            href={sanitizeUrl(link.url)}
+                            className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                          >
                             {link.text}
                           </Link>
                         </li>

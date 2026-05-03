@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   todo:
     runs-on: ubuntu-latest
@@ -17,10 +20,10 @@ jobs:
 
     steps:
       - name: Begin CI...
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: TODO to Issue
-        uses: alstr/todo-to-issue-action@v5.1.10
+        uses: alstr/todo-to-issue-action@v5.1.14
         id: todo
         with:
           INSERT_ISSUE_URLS: 'true'
@@ -34,7 +37,7 @@ jobs:
       - name: Commit and Push Changes
         run: |
           git add -A
-          if [[ `git status --porcelain` ]]; then
+          if [[ $(git status --porcelain) ]]; then
             git commit -m "Automatically added GitHub issue links to TODOs"
             git push origin main
           else

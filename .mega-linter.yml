@@ -6,20 +6,17 @@
 # all, none, or list of linter keys
 APPLY_FIXES: all
 
-# If you use ENABLE variable, all other languages/formats/tooling-formats will
-# be disabled by default
-# ENABLE:
+# Disable linters that are not useful or cannot be satisfied
+# Grype/Trivy: transitive dependency vulns tracked via `pnpm audit`
+# Spell: too many false positives on technical terms and package names
+DISABLE_LINTERS:
+  - REPOSITORY_GRYPE
+  - REPOSITORY_TRIVY
+  - SPELL_CSPELL
 
-# If you use ENABLE_LINTERS variable, all other linters will be disabled by
-# default
-# ENABLE_LINTERS:
-
-# DISABLE:
-# - COPYPASTE # Uncomment to disable checks of excessive copy-pastes
-# - SPELL # Uncomment to disable checks of spelling mistakes
+# Filter out lockfiles from linters that are not useful on generated files
+FILTER_REGEX_EXCLUDE: "pnpm-lock\\.yaml$"
 
 SHOW_ELAPSED_TIME: true
 
 FILEIO_REPORTER: false
-# Uncomment if you want MegaLinter to detect errors but not block CI to pass
-# DISABLE_ERRORS: true
