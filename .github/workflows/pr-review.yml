@@ -31,7 +31,9 @@ jobs:
       - name: Setup Danger Files
         run: |
           echo "Setting up Danger files..."
-          mv tools/danger/* .
+          cp tools/danger/dangerfile.ts .
+          cp tools/danger/.node-version .
+          cp tools/danger/tsconfig.json .
 
       - name: Setup Node
         uses: actions/setup-node@v6
