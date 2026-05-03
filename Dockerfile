@@ -45,7 +45,7 @@ COPY --chown=node:node . .
 RUN \
   if [ -f yarn.lock ]; then yarn build; \
   elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm build; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm build --webpack; \
   else npm run build; \
   fi
 
