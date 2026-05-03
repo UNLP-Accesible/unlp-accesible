@@ -26,19 +26,22 @@ jobs:
 
     steps:
       - name: Begin CI...
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Danger Files
         run: |
           echo "Setting up Danger files..."
           mv tools/danger/* .
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
-          node-version: 'v22.14.0'
+          node-version-file: .node-version
 
-      - name: Install dependencies
-        run: npm install
+      - name: Setup pnpm and install dependencies
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: true
 
       - name: Danger JS Action
         uses: danger/danger-js@11.2.0
