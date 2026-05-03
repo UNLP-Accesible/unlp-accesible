@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 jobs:
-  type-check:
+  test:
     if: >-
       github.event_name != 'pull_request' ||
       (github.event_name == 'pull_request' &&
