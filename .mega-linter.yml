@@ -6,33 +6,17 @@
 # all, none, or list of linter keys
 APPLY_FIXES: all
 
-# If you use ENABLE variable, all other languages/formats/tooling-formats will
-# be disabled by default
-# ENABLE:
-
-# If you use ENABLE_LINTERS variable, all other linters will be disabled by
-# default
-# ENABLE_LINTERS:
-
-# DISABLE:
-# - COPYPASTE # Uncomment to disable checks of excessive copy-pastes
-# - SPELL # Uncomment to disable checks of spelling mistakes
-
-SHOW_ELAPSED_TIME: true
-
-FILEIO_REPORTER: false
+# Disable linters that are not useful or cannot be satisfied
+# Grype/Trivy: transitive dependency vulns tracked via `pnpm audit`
+# Spell: too many false positives on technical terms and package names
+DISABLE_LINTERS:
+  - REPOSITORY_GRYPE
+  - REPOSITORY_TRIVY
+  - SPELL_CSPELL
 
 # Filter out lockfiles from linters that are not useful on generated files
 FILTER_REGEX_EXCLUDE: "pnpm-lock\\.yaml$"
 
-# Disable grype (vulnerability scanner) — vulnerabilities are tracked via `pnpm audit`
-# and dependency updates. MegaLinter's grype often fails on transitive deps that
-# cannot be directly updated without breaking changes.
-REPOSITORY_GRYPE_DISABLED: true
+SHOW_ELAPSED_TIME: true
 
-# Disable trivy — Dockerfile HEALTHCHECK is already addressed in our workflow,
-# and trivy's filesystem scanner overlaps with checkov/megalinter.
-REPOSITORY_TRIVY_DISABLED: true
-
-# cspell: ignore pnpm lockfile (generated, contains package names not in dictionary)
-SPELL_CSPELL_FILETYPES: "-lock.yaml"
+FILEIO_REPORTER: false
