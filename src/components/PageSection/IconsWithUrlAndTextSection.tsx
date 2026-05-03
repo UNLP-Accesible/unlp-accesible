@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
 import { type Image as ImageType } from 'sanity';
+import { sanitizeUrl } from '@/lib/sanitize';
 import { urlForImage } from '@/sanity/lib/utils';
 
 interface IconWithUrlAndText {
@@ -32,10 +33,12 @@ const IconsWithUrlAndTextSection: FC<IconsWithUrlAndTextSectionProps> = ({
       <div className={`grid ${hasText ? 'gap-5' : 'gap-10'}`} style={{ gridTemplateColumns }}>
         {icons.map((item, index) => {
           const iconSrc = urlForImage(item.icon)?.url();
+          const safeUrl = sanitizeUrl(item.url);
           return (
             <a
               key={index}
-              href={item.url}
+              href={safeUrl}
+              rel="noopener noreferrer"
               style={{ color, backgroundColor }}
               className="flex flex-col items-center justify-center text-lg font-semibold rounded-lg transition duration-300 ease-in-out"
             >

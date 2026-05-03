@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { sanitizeFormAction, sanitizeFormMethod } from '@/lib/sanitize';
 
 interface Input {
   label: string;
@@ -25,8 +26,19 @@ const FormSection: FC<FormSectionProps> = ({
   color,
   backgroundColor,
 }) => {
+  // Sanitize form action URL and method to prevent data exfiltration
+  // via compromised CMS content or arbitrary external submissions
+  const safeUrl = sanitizeFormAction(url);
+  const safeMethod = sanitizeFormMethod(method);
+
   return (
-    <form id={formId} action={url} method={method} style={{ color, backgroundColor }} className="p-6 rounded-lg">
+    <form
+      id={formId}
+      action={safeUrl}
+      method={safeMethod}
+      style={{ color, backgroundColor }}
+      className="p-6 rounded-lg"
+    >
       {inputs.map((input) => (
         <div key={input.name} className="mb-4">
           <label className="block text-sm font-medium mb-1">{input.label}</label>

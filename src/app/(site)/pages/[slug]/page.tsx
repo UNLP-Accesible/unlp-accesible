@@ -12,8 +12,9 @@ interface SlugPageProps {
 export async function generateMetadata({ params }: SlugPageProps): Promise<Metadata> {
   const slug = (await params).slug;
 
-  const { data } = await loadQuery<SiteSettings>(pageBySlugQuery, { slug }, { stega: false });
-  const title = data?.siteTitle ?? '';
+  // pageBySlugQuery returns Page data, not SiteSettings
+  const { data } = await loadQuery<Page>(pageBySlugQuery, { slug }, { stega: false });
+  const title = data?.siteTitle ?? data?.title ?? '';
   const description = data?.description ?? '';
 
   const metadata = {

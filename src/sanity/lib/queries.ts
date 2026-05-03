@@ -301,6 +301,7 @@ export interface Page {
   _id: string;
   title: string;
   siteTitle: string;
+  description?: string;
   titleColor?: Color;
   titleBackgroundColor?: Color;
   contentColor?: Color;
