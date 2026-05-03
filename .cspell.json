@@ -7,6 +7,7 @@
     ".vscode",
     "megalinter",
     "package-lock.json",
+    "pnpm-lock.yaml",
     "report"
   ],
   "language": "en",

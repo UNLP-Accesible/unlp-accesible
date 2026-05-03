@@ -1,5 +1,7 @@
 {
   "name": "unlp-accesible-pwa",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "presetup": "echo 'about to setup env variables, follow the guide here: https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#using-the-sanity-cli'",
     "setup": "sanity init --env .env.local",

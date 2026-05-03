@@ -21,5 +21,18 @@ APPLY_FIXES: all
 SHOW_ELAPSED_TIME: true
 
 FILEIO_REPORTER: false
-# Uncomment if you want MegaLinter to detect errors but not block CI to pass
-# DISABLE_ERRORS: true
+
+# Filter out lockfiles from linters that are not useful on generated files
+FILTER_REGEX_EXCLUDE: "pnpm-lock\\.yaml$"
+
+# Disable grype (vulnerability scanner) — vulnerabilities are tracked via `pnpm audit`
+# and dependency updates. MegaLinter's grype often fails on transitive deps that
+# cannot be directly updated without breaking changes.
+REPOSITORY_GRYPE_DISABLED: true
+
+# Disable trivy — Dockerfile HEALTHCHECK is already addressed in our workflow,
+# and trivy's filesystem scanner overlaps with checkov/megalinter.
+REPOSITORY_TRIVY_DISABLED: true
+
+# cspell: ignore pnpm lockfile (generated, contains package names not in dictionary)
+SPELL_CSPELL_FILETYPES: "-lock.yaml"

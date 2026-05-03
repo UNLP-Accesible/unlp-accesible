@@ -11,7 +11,7 @@ const ALLOWED_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'] as const;
  * Returns '#' for invalid or unsafe URLs.
  */
 export const sanitizeUrl = (url: string | undefined | null): string => {
-  if (!url || url.trim() === '') {
+  if (url === undefined || url === null || url.trim() === '') {
     return '#';
   }
 
@@ -37,7 +37,9 @@ export const sanitizeUrl = (url: string | undefined | null): string => {
  * Returns the sanitized URL or empty string if invalid.
  */
 export const sanitizeYouTubeUrl = (url: string | undefined | null): string => {
-  if (!url) return '';
+  if (url === undefined || url === null || url === '') {
+    return '';
+  }
 
   try {
     const parsed = new URL(url);
@@ -48,13 +50,14 @@ export const sanitizeYouTubeUrl = (url: string | undefined | null): string => {
       'youtube-nocookie.com',
     ].includes(parsed.hostname);
 
-    if (!isYouTube) {
+    if (isYouTube === false) {
       return '';
     }
 
     // Allow embed paths or video IDs
-    const isEmbed = parsed.pathname.startsWith('/embed/') || parsed.searchParams.has('v');
-    return isEmbed ? url : '';
+    const isEmbed =
+      parsed.pathname.startsWith('/embed/') || parsed.searchParams.has('v');
+    return isEmbed === true ? url : '';
   } catch {
     return '';
   }
@@ -65,10 +68,18 @@ export const sanitizeYouTubeUrl = (url: string | undefined | null): string => {
  */
 const ALLOWED_FORM_METHODS = ['get', 'post'] as const;
 
-export const sanitizeFormMethod = (method: string | undefined | null): string => {
-  if (!method) return 'post';
+export const sanitizeFormMethod = (
+  method: string | undefined | null,
+): string => {
+  if (method === undefined || method === null || method === '') {
+    return 'post';
+  }
   const lower = method.toLowerCase();
-  return ALLOWED_FORM_METHODS.includes(lower as (typeof ALLOWED_FORM_METHODS)[number]) ? lower : 'post';
+  return ALLOWED_FORM_METHODS.includes(
+    lower as (typeof ALLOWED_FORM_METHODS)[number],
+  )
+    ? lower
+    : 'post';
 };
 
 /**
@@ -76,7 +87,9 @@ export const sanitizeFormMethod = (method: string | undefined | null): string =>
  * Returns '/' for invalid or unsafe URLs.
  */
 export const sanitizeFormAction = (url: string | undefined | null): string => {
-  if (!url) return '/';
+  if (url === undefined || url === null || url === '') {
+    return '/';
+  }
 
   try {
     const parsed = new URL(url);
