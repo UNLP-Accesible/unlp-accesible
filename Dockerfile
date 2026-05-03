@@ -25,6 +25,16 @@ FROM node:22-alpine AS build
 # Set working directory
 WORKDIR /app
 
+# Build arguments for Sanity config (needed at build time)
+ARG NEXT_PUBLIC_SANITY_PROJECT_ID
+ARG NEXT_PUBLIC_SANITY_DATASET
+ARG SANITY_API_READ_TOKEN
+
+# Persist as env vars so Next.js can read them during `yarn build`
+ENV NEXT_PUBLIC_SANITY_PROJECT_ID=${NEXT_PUBLIC_SANITY_PROJECT_ID}
+ENV NEXT_PUBLIC_SANITY_DATASET=${NEXT_PUBLIC_SANITY_DATASET}
+ENV SANITY_API_READ_TOKEN=${SANITY_API_READ_TOKEN}
+
 # Install dependencies to use npm
 COPY --chown=node:node package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 COPY --chown=node:node --from=development /app/node_modules node_modules
