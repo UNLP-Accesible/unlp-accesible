@@ -1,0 +1,61 @@
+# Dependabot configuration for UNLP AcceSÍble
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates
+
+version: 2
+updates:
+  # npm/pnpm dependencies for root project
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: 'deps'
+    labels:
+      - 'dependencies'
+      - 'dependabot'
+    versioning-strategy: increase
+    ignore:
+      - dependency-name: 'typescript'
+        update-types: ['major']
+      - dependency-name: 'next'
+        update-types: ['major']
+
+  # npm/pnpm dependencies for tools/danger
+  - package-ecosystem: 'npm'
+    directory: '/tools/danger'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'deps'
+    labels:
+      - 'dependencies'
+      - 'dependabot'
+
+  # GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'ci'
+    labels:
+      - 'ci'
+      - 'github-actions'
+
+  # Docker files
+  - package-ecosystem: 'docker'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: 'docker'
+    labels:
+      - 'docker'
