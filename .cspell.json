@@ -12,10 +12,6 @@
   ],
   "language": "en",
   "noConfigSearch": true,
-  "words": [
-    "megalinter",
-    "oxsecurity",
-    "stega"
-  ],
+  "words": ["megalinter", "oxsecurity", "stega"],
   "version": "0.2"
 }
