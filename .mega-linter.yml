@@ -15,7 +15,7 @@ DISABLE_LINTERS:
   - SPELL_CSPELL
 
 # Filter out lockfiles from linters that are not useful on generated files
-FILTER_REGEX_EXCLUDE: "pnpm-lock\\.yaml$"
+FILTER_REGEX_EXCLUDE: "pnpm-lock\\.yaml$|package-lock\\.json$"
 
 SHOW_ELAPSED_TIME: true
 

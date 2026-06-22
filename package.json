@@ -18,7 +18,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.10",
     "@heroicons/react": "^2.2.0",
-    "@next/third-parties": "^16.2.4",
+    "@next/third-parties": "^16.2.5",
     "@portabletext/react": "^6.0.3",
     "@portabletext/types": "^2.0.13",
     "@sanity/asset-utils": "^2.3.0",
@@ -31,7 +31,7 @@
     "@sanity/vision": "^5.23.0",
     "@serwist/next": "^9.5.11",
     "@tailwindcss/forms": "^0.5.10",
-    "next": "^16.2.4",
+    "next": "^16.2.5",
     "next-sanity": "^12.4.0",
     "react": "^19.2.5",
     "react-best-gradient-color-picker": "^3.0.14",
@@ -40,15 +40,14 @@
     "sanity": "^5.23.0",
     "sharp": "^0.33.5",
     "styled-components": "^6.1.17",
-    "js-yaml": "^4.1.1",
+    "js-yaml": "^4.2.0",
     "prismjs": "^1.30.0",
-    "postcss": "^8.5.14",
     "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
-    "@next/eslint-plugin-next": "^16.2.4",
+    "@next/eslint-plugin-next": "^16.2.5",
     "@sanity/eslint-config-studio": "^5.0.2",
     "@tailwindcss/postcss": "^4.0.17",
     "@types/node": "^22.13.14",
@@ -58,7 +57,7 @@
     "autoprefixer": "^10.5.0",
     "danger": "^13.0.7",
     "eslint": "^9.23.0",
-    "eslint-config-next": "^16.2.4",
+    "eslint-config-next": "^16.2.5",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-import": "^2.31.0",
     "husky": "^9.1.7",
@@ -75,14 +74,14 @@
     "lodash": "4.17.22",
     "lodash-es": "4.17.22",
     "picomatch": "4.0.4",
-    "form-data": "4.0.5",
+    "form-data": "4.0.6",
     "braces": "3.0.3",
     "jws": "4.0.1",
     "parse-git-config": "3.0.0",
     "semver": "7.7.4",
     "uuid": "14.0.0",
-    "vite": "6.4.2",
-    "dompurify": "3.4.2",
+    "vite": "7.3.5",
+    "dompurify": "3.4.11",
     "postcss": "8.5.14",
     "@octokit/request": "10.1.4",
     "@octokit/plugin-paginate-rest": "12.0.2",
@@ -97,7 +96,22 @@
     "glob": "11.0.1",
     "prismjs": "1.30.0",
     "@babel/runtime": "7.27.6",
-    "tar": "7.5.13",
-    "js-yaml": "4.1.1"
+    "@babel/core": "7.29.6",
+    "@babel/plugin-transform-modules-systemjs": "8.0.1",
+    "tar": "7.5.16",
+    "js-yaml": "4.2.0",
+    "undici": "7.28.0",
+    "ws": "8.21.0",
+    "fast-uri": "3.1.1",
+    "markdown-it": "14.2.0",
+    "qs": "6.15.2",
+    "brace-expansion": "5.0.6",
+    "@eslint/plugin-kit": "0.3.4",
+    "esbuild": "0.28.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@vercel/frameworks>js-yaml": "4.2.0"
+    }
   }
 }

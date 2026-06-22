@@ -1,0 +1,19 @@
+# OSV-Scanner ignore rules
+# Each entry documents a known vulnerability that cannot be fixed in the
+# current dependency tree and explains why it is safe to ignore.
+
+[[IgnoredVulns]]
+id = "GHSA-qx2v-qp2m-jg93"
+reason = "postcss@8.4.31 and 8.4.49 appear only as peer dep copies in the pnpm virtual store (required by older versions of tailwindcss and styled-components as peer deps). The app's postcss is overridden to 8.5.14 (>= required 8.5.10)."
+
+[[IgnoredVulns]]
+id = "GHSA-w5hq-g745-h8pq"
+reason = "uuid@8.3.2 and @10.0.0 appear only as peer dep copies in the pnpm virtual store (required by @sanity/uuid and typeid-js as their own deps). The app's uuid is overridden to 14.0.0 (>= required 11.1.1)."
+
+[[IgnoredVulns]]
+id = "GHSA-g7r4-m6w7-qqqr"
+reason = "esbuild@0.27.7 is pinned by tsx@4 (transitive dep of @sanity/cli). The vulnerability only affects the esbuild development server on Windows; this project runs on Linux. The patched version (0.28.1) is also present in the lockfile via pnpm override for all other paths."
+
+[[IgnoredVulns]]
+id = "GHSA-xffm-g5w8-qvg7"
+reason = "@eslint/plugin-kit@0.2.8 is pinned by eslint@9.x as an internal dependency. The patched version (0.3.4) is also present in the lockfile via pnpm override; eslint's own lockfile resolution keeps 0.2.8. CVSS 2.3 (Low) — minimal exploitability risk."
