@@ -10,8 +10,8 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --ignore-path .gitignore --write .",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix src/",
     "type-check": "tsc --noEmit",
     "prepare": "husky"
   },

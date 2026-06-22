@@ -17,6 +17,9 @@ RUN \
 # Copy the rest of the files
 COPY . ./
 
+# Run dev server as non-root
+USER node
+
 CMD [ "npm", "run", "dev" ]
 
 FROM node:22-alpine AS build
@@ -24,15 +27,16 @@ FROM node:22-alpine AS build
 # Set working directory
 WORKDIR /app
 
-# Build arguments for Sanity config (needed at build time)
+# Public build args (safe to bake into the image — no secrets)
 ARG NEXT_PUBLIC_SANITY_PROJECT_ID
 ARG NEXT_PUBLIC_SANITY_DATASET
-ARG SANITY_API_READ_TOKEN
-
-# Persist as env vars so Next.js can read them during `yarn build`
 ENV NEXT_PUBLIC_SANITY_PROJECT_ID=${NEXT_PUBLIC_SANITY_PROJECT_ID}
 ENV NEXT_PUBLIC_SANITY_DATASET=${NEXT_PUBLIC_SANITY_DATASET}
-ENV SANITY_API_READ_TOKEN=${SANITY_API_READ_TOKEN}
+
+# SANITY_API_READ_TOKEN is a secret: pass it inline in the build command so it
+# is NOT stored as an image ENV layer (avoids leaking via `docker history`).
+# At runtime, inject it via Docker Compose `environment:` or a .env file.
+ARG SANITY_API_READ_TOKEN
 
 # Install dependencies to use npm
 COPY --chown=node:node package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
@@ -41,12 +45,12 @@ COPY --chown=node:node --from=development /app/node_modules node_modules
 # Copy the rest of the files
 COPY --chown=node:node . .
 
-# Build Next.js based on the preferred package manager
+# Build Next.js — SANITY_API_READ_TOKEN is passed inline (not stored in ENV layer)
 RUN \
-  if [ -f yarn.lock ]; then yarn build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm build --turbopack; \
-  else npm run build; \
+  if [ -f yarn.lock ]; then SANITY_API_READ_TOKEN=${SANITY_API_READ_TOKEN} yarn build; \
+  elif [ -f package-lock.json ]; then SANITY_API_READ_TOKEN=${SANITY_API_READ_TOKEN} npm run build; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable && SANITY_API_READ_TOKEN=${SANITY_API_READ_TOKEN} pnpm build; \
+  else SANITY_API_READ_TOKEN=${SANITY_API_READ_TOKEN} npm run build; \
   fi
 
 # Use the node user from the image as the user to run the app
@@ -74,6 +78,6 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
+  CMD node -e "require('http').get('http://localhost:3000/', r => { process.exit(r.statusCode === 200 ? 0 : 1) })" || exit 1
 
 CMD [ "node", "server.js" ]

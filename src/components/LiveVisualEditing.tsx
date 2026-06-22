@@ -12,10 +12,12 @@ const stegaClient = client.withConfig({ stega: true });
 export default function LiveVisualEditing() {
   useLiveMode({ studioUrl: '/studio', client: stegaClient });
   useEffect(() => {
-    // If not an iframe or a Vercel Preview deployment, turn off Draft Mode
-    // if (process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview' && window === parent) {
-    //  location.href = '/api/disable-draft';
-    // }
+    // Draft mode must only be active inside the Sanity Studio preview iframe.
+    // If this component renders in a top-level window (not embedded), immediately
+    // disable draft mode to prevent stale preview sessions in production.
+    if (typeof window !== 'undefined' && window === window.parent) {
+      location.href = '/api/disable-draft';
+    }
   }, []);
 
   return <VisualEditing />;

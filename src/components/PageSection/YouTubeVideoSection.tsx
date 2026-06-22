@@ -30,10 +30,7 @@ const YouTubeVideoSection: FC<YouTubeVideoSectionProps> = ({
   // Don't render iframe if URL is invalid
   if (!safeVideoUrl) {
     return (
-      <div
-        style={{ color, backgroundColor }}
-        className="rounded-lg transition duration-300 ease-in-out"
-      >
+      <div style={{ color, backgroundColor }} className="rounded-lg transition duration-300 ease-in-out">
         {textBefore && <p className="p-5 text-sm">{textBefore}</p>}
         {contentBefore && (
           <div className="p-5">
@@ -52,10 +49,7 @@ const YouTubeVideoSection: FC<YouTubeVideoSectionProps> = ({
   }
 
   return (
-    <div
-      style={{ color, backgroundColor }}
-      className="rounded-lg transition duration-300 ease-in-out"
-    >
+    <div style={{ color, backgroundColor }} className="rounded-lg transition duration-300 ease-in-out">
       {textBefore && <p className="p-5 text-sm">{textBefore}</p>}
       {contentBefore && (
         <div className="p-5">
@@ -68,7 +62,7 @@ const YouTubeVideoSection: FC<YouTubeVideoSectionProps> = ({
         height="200"
         title={title}
         style={{ border: '0' }}
-        sandbox="allow-scripts allow-same-origin allow-popups"
+        sandbox="allow-scripts allow-popups"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />

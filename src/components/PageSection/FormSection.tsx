@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { sanitizeFormAction, sanitizeFormMethod } from '@/lib/sanitize';
+import { sanitizeFormAction, sanitizeFormMethod, sanitizeInputType } from '@/lib/sanitize';
 
 interface Input {
   label: string;
@@ -42,7 +42,7 @@ const FormSection: FC<FormSectionProps> = ({
       {inputs.map((input) => (
         <div key={input.name} className="mb-4">
           <label className="block text-sm font-medium mb-1">{input.label}</label>
-          <input type={input.type} name={input.name} className="w-full p-2 border rounded" />
+          <input type={sanitizeInputType(input.type)} name={input.name} className="w-full p-2 border rounded" />
         </div>
       ))}
       <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">

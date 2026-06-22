@@ -1,6 +1,7 @@
 'use client';
 
 import React, { FC, useState } from 'react';
+import { sanitizeEmail } from '@/lib/sanitize';
 
 interface SendEmailSectionProps {
   emailTo: string;
@@ -14,8 +15,12 @@ const SendEmailSection: FC<SendEmailSectionProps> = ({ emailTo, color, backgroun
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
 
+  // Validate CMS-provided email to prevent javascript: or other protocol injection
+  const safeEmailTo = sanitizeEmail(emailTo);
+
   const handleSendEmail = () => {
-    const mailtoLink = `mailto:${emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+    if (!safeEmailTo) return;
+    const mailtoLink = `mailto:${safeEmailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
       `Nombre: ${name}\nEmail: ${emailFrom}\n\n${message}`,
     )}`;
     window.location.href = mailtoLink;
@@ -61,8 +66,9 @@ const SendEmailSection: FC<SendEmailSectionProps> = ({ emailTo, color, backgroun
       </div>
       <button
         onClick={handleSendEmail}
+        disabled={!safeEmailTo}
         style={{ color, backgroundColor }}
-        className="w-full text-lg font-semibold py-2 rounded-lg transition duration-300 ease-in-out"
+        className="w-full text-lg font-semibold py-2 rounded-lg transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {`Enviar >`}
       </button>

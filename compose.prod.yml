@@ -4,5 +4,25 @@ services:
       context: .
       target: production
     ports:
-      - '3000:3000'
-    restart: always
+      - '127.0.0.1:3000:3000'
+    restart: on-failure
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      # Runtime secrets — never pass via build args; set in .env.local on the host
+      - SANITY_API_READ_TOKEN
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
