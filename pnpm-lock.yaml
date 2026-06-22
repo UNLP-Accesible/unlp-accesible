@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@vercel/frameworks>js-yaml': 4.2.0
+
 importers:
   .:
     dependencies:
@@ -53,8 +56,8 @@ importers:
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@3.4.17)
       js-yaml:
-        specifier: ^4.1.1
-        version: 4.1.1
+        specifier: ^4.2.0
+        version: 4.2.0
       next:
         specifier: ^16.2.5
         version: 16.2.9(@babel/core@7.29.7)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -3990,10 +3993,6 @@ packages:
     resolution:
       { integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg== }
 
-  argparse@1.0.10:
-    resolution:
-      { integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg== }
-
   argparse@2.0.1:
     resolution:
       { integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q== }
@@ -6382,14 +6381,9 @@ packages:
     resolution:
       { integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ== }
 
-  js-yaml@3.13.1:
+  js-yaml@4.2.0:
     resolution:
-      { integrity: sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw== }
-    hasBin: true
-
-  js-yaml@4.1.1:
-    resolution:
-      { integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA== }
+      { integrity: sha512-ePWsvanv0DWuDRsW8dnt+R4jQ31SCRCQ7hhNcPXZPsoBZiemuZNYGf7adZdqX2D86j6rvKp3RpCxVTSb8WQlOw== }
     hasBin: true
 
   jsdom@26.1.0:
@@ -8258,10 +8252,6 @@ packages:
     resolution:
       { integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg== }
     engines: { node: '>= 10.x' }
-
-  sprintf-js@1.0.3:
-    resolution:
-      { integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g== }
 
   stdin-discarder@0.3.2:
     resolution:
@@ -10742,7 +10732,7 @@ snapshots:
       globals: 14.0.0
       ignore: 5.3.1
       import-fresh: 3.3.0
-      js-yaml: 4.1.1
+      js-yaml: 4.2.0
       minimatch: 3.1.5
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -12867,7 +12857,7 @@ snapshots:
     dependencies:
       '@iarna/toml': 2.2.3
       '@vercel/error-utils': 2.0.3
-      js-yaml: 3.13.1
+      js-yaml: 4.2.0
 
   '@vercel/stega@1.1.0': {}
 
@@ -12970,10 +12960,6 @@ snapshots:
       picomatch: 2.3.2
 
   arg@5.0.2: {}
-
-  argparse@1.0.10:
-    dependencies:
-      sprintf-js: 1.0.3
 
   argparse@2.0.1: {}
 
@@ -13514,7 +13500,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
-      js-yaml: 4.1.1
+      js-yaml: 4.2.0
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.8.2
@@ -15214,12 +15200,7 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@3.13.1:
-    dependencies:
-      argparse: 1.0.10
-      esprima: 4.0.1
-
-  js-yaml@4.1.1:
+  js-yaml@4.2.0:
     dependencies:
       argparse: 2.0.1
 
@@ -15486,7 +15467,7 @@ snapshots:
   load-yaml-file@1.0.0:
     dependencies:
       graceful-fs: 4.2.11
-      js-yaml: 4.1.1
+      js-yaml: 4.2.0
       strip-bom: 5.0.0
 
   locate-path@3.0.0:
@@ -16961,8 +16942,6 @@ snapshots:
   speakingurl@14.0.1: {}
 
   split2@4.2.0: {}
-
-  sprintf-js@1.0.3: {}
 
   stdin-discarder@0.3.2: {}
 
